@@ -1,0 +1,4459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Script do MathJax no <head> -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
+    <title>Nivelamento - Matemática Para Engenharia Nivel 1 - Unidade 3</title>
+
+    <style>
+         /* Global styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .titulo-programa {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 50px;
+            color: #003974;
+            font-weight: lighter;
+        }
+
+        .titulo-materia {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 133px;
+            color: #003974;
+            font-weight: lighter;
+        }
+
+        .subtitulo-professor {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 59px;
+            color: #0058B4;
+            font-weight: lighter;
+        }
+
+        .titulo-unidade {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 60px;
+        }
+
+        .titulo-saiba-mais {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 70px;
+        }
+        /* Estilização de Bebas Neue FIM */
+
+
+        /* Estilização de Roboto INICIO */
+        .peso-1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 45px;
+        }
+
+        .texto {
+            font-family: 'Roboto', sans-serif;
+            font-size: 35px;
+        }
+
+        .sub-texto {
+            font-family: 'Roboto', sans-serif;
+            font-size: 25px;
+        }
+
+        .titulo-box {
+            font-family: 'Roboto', sans-serif;
+            font-size: 32px;
+        }
+
+        .fonte {
+            font-family: 'Roboto', sans-serif;
+            font-size: 25px;
+        }
+
+        .citacao {
+            font-family: 'Roboto', sans-serif;
+            font-size: 30px;
+            font-style: italic;
+        }
+        /* Estilização de Roboto FIM */
+
+        /* Navbar styles INICIO */
+        .navbar {
+            background-color: #9F43BE;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: -webkit-sticky; /* Para navegadores antigos */
+            position: sticky; /* Para manter no topo durante o scroll */
+            top: 0; /* Faz com que a navbar fique no topo */
+            z-index: 10; /* Garante que o menu fique acima de outros elementos */
+            transition: background-color 0.3s ease; /* Transição suave para o efeito */
+        }
+
+        .navbar .logo img {
+            height: 50px;/* Ajuste conforme necessário */
+            width: auto;
+        }
+
+        .navbar .menu-toggle {
+            cursor: pointer;
+            font-size: 1.5em;
+            display: block;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: none;
+            flex-direction: column;
+            background-color: #9f43be;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            height: auto;
+            border-radius: 5px;
+            z-index: 10; /* Garante que o menu esteja acima de outros elementos */
+        }
+
+        .navbar ul.show {
+            display: flex;
+        }
+
+        .navbar ul li {
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #003974; /* Cor ao passar o mouse */
+        }
+        .navbar .menu-toggle i:last-child {
+            display: none; /* Esconde o ícone de fechar inicialmente */
+        }
+        
+
+         /* Navbar styles FIM */
+
+        /* Titulo styles INICIO */
+        .titulo-intro {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .titulo-intro h1 {
+            margin: 0;
+            padding: 15px;
+        }
+        /* Titulo styles FIM */
+
+        /* Estilo da Capa do Livro INICIO*/
+        .capa-livro {
+            position: relative;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden; /* Para evitar que o pseudoelemento saia do container */
+            border-top: 3px solid #003974;
+            border-bottom: 3px solid #003974;
+        }
+
+        .capa-livro::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://res.cloudinary.com/di4ria1pf/image/upload/v1760076113/IMAGEM_CAPA_pq45xy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.40; /* Controle da opacidade */
+            z-index: -1; /* Coloca o background atrás do conteúdo */
+        }
+
+        
+
+        .capa-livro .conteudo-capa {
+            text-align: center;
+            color: white;
+            padding: 20px; /* Espaço interno para o texto */
+        }
+
+        .capa-livro .titulo-materia {
+            font-size: 70px;
+            font-family: 'Bebas Neue', cursive;
+            margin: 0;
+        }
+
+        .capa-livro .subtitulo-professor {
+            font-size: 40px;
+            font-family: 'Bebas Neue', cursive;
+            margin: 10px 0 0;
+        }
+        /* Estilo da Capa do Livro FIM*/
+
+        /* Barra Superior */
+        .barra-superior {
+            background-color: #015A42; /* Cor verde escuro */
+            width: 100%;
+            padding: 15px 15px;
+            text-align: center;
+            box-sizing: border-box; /* Inclui padding e bordas no cálculo da largura */
+            overflow-x: hidden; /* Previne rolagem horizontal */
+        }
+
+        .barra-superior .titulo-barra {
+            font-family: 'Bebas Neue', cursive;
+            color: #FFF; /* Cor branca */
+            font-size: 50px;
+            font-weight: lighter;
+            margin: 0;
+        }
+
+        /* Conteúdo da Introdução */
+        .introducao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            overflow-x: hidden; /* Impede rolagem horizontal */
+        }
+        
+        .introducao .titulo-introducao {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 50px;
+            font-weight: lighter;
+            color: #015A42; /* Cor verde */
+            margin: 10px auto 10px auto;
+        }
+
+        .introducao .caixa-texto {
+            width: 100%;
+            background-color: #E2F4EB; /* Verde mais claro */
+            padding: 64px 0;
+        }
+                /* Conteúdo centralizado dentro da faixa */
+        .introducao .conteudo-centralizado {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Parágrafos da introdução */
+        .introducao .conteudo-centralizado p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 19px;
+            line-height: 1.6;
+            text-align: justify;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* RESPONSIVIDADE SEÇÕES ACIMA*/
+        /* Capa do Livro - Responsividade */
+        @media (max-width: 768px) {
+            .capa-livro {
+                height: 70vh; /* Reduz a altura da capa */
+            }
+            .capa-livro::before {
+                background-position: center center; /* centraliza melhor no mobile */
+            }
+            .capa-livro .titulo-materia {
+                font-size: 40px; /* Reduz o tamanho do título */
+            }
+
+            .capa-livro .subtitulo-professor {
+                font-size: 24px; /* Reduz o tamanho do subtítulo */
+            }
+            .capa-livro .titulo-programa {
+                font-size: 18px;
+            }
+            .capa-livro .conteudo-capa {
+                padding: 15px; /* Ajusta o padding para telas menores */
+            }
+        }   
+            /* Seção Introdução - Responsividade */
+        @media (max-width: 768px) {
+            .barra-superior {
+                padding: 10px; /* Reduz o padding da barra */
+            }
+
+            .barra-superior .titulo-barra {
+                font-size: 1.6rem;
+                max-width: 800px;
+                margin: 10px 0;
+                padding: 0 30px;
+                text-align: left;
+            }
+
+            .introducao .titulo-introducao {
+                font-size: 2.8rem; /* Reduz o tamanho do título da introdução */
+                margin-top: 20px; /* Ajusta o espaçamento superior */
+            }
+
+            .introducao .caixa-texto {
+                padding: 20px; /* Reduz o padding da caixa de texto */
+                width: 100%; /* Ajusta a largura da caixa */
+            }
+
+            .introducao .caixa-texto p {
+                font-size: 1rem; /* Reduz o tamanho do texto */
+                line-height: 1.4;
+                margin-bottom: 10px; /* Ajusta a margem entre os parágrafos */
+            }
+            .introducao .conteudo-centralizado {
+                max-width: 800px;
+                margin: 10px 0;
+                padding: 0 40px;
+            }
+        }
+        /* Responsividade para o título da seção de Programa */
+        @media (max-width: 768px) {
+            .titulo-programa {
+                font-size: 50px; /* Ajuste do tamanho do título */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .titulo-programa {
+                font-size: 35px; /* Ajuste para telas muito pequenas */
+            }
+        }
+        /* Estilo base da seção */
+        .secao1 .conteudo-secao {
+            width: 100% !important;
+            padding: 64px 0 !important; /* padding vertical conforme solicitado */
+            box-sizing: border-box !important;
+        }
+        .secao1 .acordeon-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .secao1 .tabs-section {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        /* Estilo base da seção */
+        .secao1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #9f43be11;
+            padding: 20px;
+        }
+        .secao1 .outer-container-alt {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+       }
+        /* Imagem de topo */
+        .secao1 .imagem-topo {
+            width: 100%;
+            height: auto;
+            max-height: 290px; /* ajuste essa altura conforme necessário */
+            object-fit: cover; /* garante que a imagem preencha sem distorcer */
+            display: block;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF;
+        }
+
+        /* Faixa verde */
+        .secao1 .faixa-verde {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .secao1 .faixa-verde .titulo-secao {
+            font-size: 25px !important;
+            font-family: 'Roboto', sans-serif;
+            color: #015A42; /* Cor verde */
+            width: 90%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .secao1 .titulo-verde {
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            color: #015A42; /* Cor verde */
+            width: 90%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        /* Parágrafo padrão */
+        .secao1 p {
+            font-size: 19px;
+            text-align: justify;
+            line-height: 1.6;
+            color: #333;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 800px;    
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .secao1 .faixa-verde .titulo-secao {
+                font-size: 20px;
+            }
+
+            .secao1 p {
+                font-size: 1rem;
+            }
+            .secao1 .imagem-topo {
+                max-height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .secao1 .faixa-verde .titulo-secao {
+                font-size: 20px;
+            }
+
+            .secao1 p {
+                font-size: 0.95rem;
+            }
+        }
+        /* Estilo base da seção */
+        .secao2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .secao2 .conteudo-secao {
+            width: 100%;
+            padding: 64px 0;
+            box-sizing: border-box;
+        }
+        .secao2 .acordeon-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 10px auto;
+        }
+       .secao2 .outer-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+       }
+        /* Imagem de topo */
+        .secao2 .imagem-topo {
+            width: 100%;
+            height: auto;
+            max-height: 290px; /* ajuste essa altura conforme necessário */
+            object-fit: cover; /* garante que a imagem preencha sem distorcer */
+            display: block;
+            margin: 0;
+            padding: 0;
+            background-color: #FFF;
+        }
+
+        /* Faixa verde */
+        .secao2 .faixa-verde {
+            width: 100%;
+            background-color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .secao2 .faixa-verde .titulo-secao {
+            font-size: 25px !important;
+            font-family: 'Roboto', sans-serif;
+            color: #015A42; /* Cor verde */
+            width: 100%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .secao2 .titulo-verde {
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            color: #3a95a6; /* Cor verde */
+            width: 90%;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        /* Parágrafo padrão */
+        .secao2 p {
+            font-size: 19px;
+            font-family: 'Roboto', sans-serif;
+            text-align: justify;
+            line-height: 1.6;
+            color: #333;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 800px;
+                 
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .secao2 .faixa-verde .titulo-secao {
+                font-size: 30px;
+            }
+
+            .secao2 p {
+                font-size: 1rem;
+            }
+            .secao2 .imagem-topo {
+                max-height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .secao2 .faixa-verde .titulo-secao {
+                font-size: 24px;
+            }
+
+            .secao2 p {
+                font-size: 0.95rem;
+            }
+        }
+        /* Parágrafo com recuo interno */
+            .paragrafo-recuo {
+                font-size: 19px;
+                text-align: justify;
+                line-height: 1.6;
+                color: #333;
+                margin: 20px auto;
+                width: 90%;
+                max-width: 800px;
+                font-family: 'Roboto', sans-serif;
+                padding-left: 40px; /* recuo uniforme */
+                text-indent: 0; /* remove indentação da primeira linha */
+            }
+
+            /* Responsivo */
+            @media (max-width: 768px) {
+                .paragrafo-recuo {
+                    font-size: 1rem;
+                    text-indent: 25px;
+                    padding-left: 10px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .paragrafo-recuo {
+                    font-size: 0.95rem;
+                    text-indent: 20px;
+                    padding-left: 8px;
+                }
+            }
+
+            /* === Bloco de Figura (sem slider) === */
+        .bloco-figura {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+           --cor-borda: #9F43BE; /* Cor padrão (roxo, por exemplo) */
+            border: 2px solid var(--cor-borda);
+            background-color: #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+                /* Tema verde (usa variável CSS) */
+        .tema-usfverde {
+            --cor-borda: #015A42; /* Verde médio */
+        }
+
+                /* Apenas para o bloco da Figura 20 */
+        .bloco-figura.figura-20 {
+            border: 2px solid #015A42;
+        }
+        /* Título */
+        .bloco-figura .titulo-figura {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: normal; /* remove o negrito */
+            font-style: normal;  /* caso também queira evitar itálico */
+        }
+        .bloco-figura .figura::after {
+            content: " "; /* espaço */
+            white-space: pre; /* garante que o espaço seja preservado */
+        }
+        .bloco-figura .titulo-figura .figura {
+            color: #015A42; /* verde padrão */
+        }
+
+        /* Imagem centralizada */
+        .bloco-figura .figura-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .bloco-figura .figura-container img {
+            max-width: 90%;
+            height: auto;
+        }
+
+        /* Fonte */
+        .bloco-figura .fonte-imagem {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Descrição */
+        .bloco-figura .descricao-figura {
+            font-size: 14px;
+            color: #333;
+            text-align: justify;
+            line-height: 1.5;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .bloco-figura {
+                padding: 15px;
+            }
+            .bloco-figura .titulo-figura {
+                font-size: 18px;
+            }
+            .bloco-figura .descricao-figura {
+                font-size: 13px;
+            }
+        }
+        /* === Bloco Horizontal === */
+        .bloco-figura-horizontal {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 2px solid #9F43BE;
+            background-color: #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Título */
+        .bloco-figura-horizontal .titulo-figura {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: left;
+            font-weight: normal; /* remove o negrito */
+            font-style: normal;  /* caso também queira evitar itálico */
+        }
+        .bloco-figura-horizontal .figura::after {
+            content: " "; /* espaço */
+            white-space: pre; /* garante que o espaço seja preservado */
+        }
+        .bloco-figura-horizontal .titulo-figura .figura {
+            color: #015A42; /* verde padrão */
+        }
+
+        /* Layout horizontal */
+        .conteudo-horizontal {
+            display: flex;
+            align-items: center; /* centraliza verticalmente imagem e texto */
+            justify-content: center;
+            flex-wrap: wrap; /* quebra em telas menores */
+        }
+
+        /* Imagem */
+        .lado-imagem {
+            flex: 1 1 41%;
+            text-align: center !important;
+        }
+
+        .lado-imagem img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 8px;
+        }
+
+        /* Fonte abaixo da imagem */
+        .lado-imagem .fonte-imagem {
+            font-size: 10px !important;
+            color: #555;
+            text-align: justify !important;
+            margin-left: 5px;
+        }
+
+        /* Texto */
+        .lado-texto {
+            flex: 1 1 55%;
+        }
+
+        .lado-texto .paragrafo-figura {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 1.5;
+        }
+
+        .lado-texto .descricao-figura {
+            font-size: 14px;
+            color: #333;
+            text-align: justify;
+            line-height: 1.5;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .conteudo-horizontal {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .lado-imagem, .lado-texto {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+
+            .lado-imagem .fonte-imagem {
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+            overflow: hidden;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* garante que se ajuste à tela inicialmente */
+            transition: transform 0.2s ease;
+            transform-origin: center center;
+        }
+        .lightbox-hint {
+            position: absolute;
+            bottom: 20px;
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+            font-family: sans-serif;
+            text-align: center;
+            animation: fadeOut 4s forwards; /* some sozinho */
+        }
+        .zoomable {
+            cursor: zoom-in; /* ícone de lupa ao passar o mouse */
+            transition: transform 0.2s ease;
+        }
+
+        .zoomable:hover {
+            transform: scale(1.02); /* leve efeito de destaque no hover */
+        }
+        @keyframes fadeOut {
+            0% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+                /* Animação suave */
+                @keyframes zoomIn {
+                    from { transform: scale(0.7); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+        
+                 /* Acordeon styles */
+        .acordeon-container {
+            margin-top: 20px;
+            width: 90%; /* Ajuste de largura */
+            max-width: 800px; /* Limite máximo */
+        }
+
+        .acordeon {
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .acordeon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #015A42;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .acordeon-headerb {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #134969;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .acordeon-headerc {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #9F43BE;
+            color: #FFF;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .acordeon-headerd {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #134969; /* exemplo: laranja suave */
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .acordeon-content {
+            display: none;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            padding-top: 0; /* Remove padding para que o header toque no conteúdo */
+            border: 2px solid #015A42;
+            border-radius: 0 0 10px 10px; /* Apenas canto inferior arredondado */
+        }
+
+        .acordeon-contentb {
+            display: none;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            padding-top: 0; /* Remove padding para que o header toque no conteúdo */
+            border: 2px solid #134969;
+            border-radius: 0 0 10px 10px; /* Apenas canto inferior arredondado */
+        }
+
+        .acordeon-contentc {
+            display: none;
+            border-radius: 5px;
+            background-color: #FFF;
+            padding-top: 0; /* Remove padding para que o header toque no conteúdo */
+            border: 2px solid #9F43BE;
+            border-radius: 0 0 10px 10px; /* Apenas canto inferior arredondado */
+        }
+
+        .acordeon-contentd {
+            display: none;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            padding-top: 0; 
+            border: 2px solid #134969; /* mesma cor da header para consistência */
+            border-radius: 0 0 10px 10px; 
+        }
+
+        .acordeon-content p {
+            margin: 20px auto;
+            font-size: 16px;
+        }
+        .acordeon-contentb p {
+            margin: 20px auto;
+            font-size: 16px;
+        }
+        .acordeon-contentc p {
+            margin: 20px auto;
+            font-size: 16px;
+        }
+        .acordeon-contentc h4 {
+            text-align: center;
+
+        }
+        .acordeon-contentd p {
+            margin: 20px auto;
+            font-size: 16px;
+        }
+        .tituloacordeonverde{
+            color: #015A42;
+        }
+            /* Estilo do ícone da seta */
+        .acordeon-icon {
+            font-size: 40px;
+            transition: transform 0.3s ease; /* Para rotação suave */
+        }
+            
+            /* Rotação da seta para cima */
+        .acordeon-header.active .acordeon-icon {
+            transform: rotate(180deg); /* Gira a seta para cima */
+        }
+        /* Rotação da seta para cima */
+        .acordeon-headerb.active .acordeon-icon {
+            transform: rotate(180deg); /* Gira a seta para cima */
+        }
+        /* Rotação da seta para cima */
+        .acordeon-headerc.active .acordeon-icon {
+            transform: rotate(180deg); /* Gira a seta para cima */
+        }
+                /* Ícone giratório */
+        .acordeon-headerd.active .acordeon-icon {
+            transform: rotate(180deg);
+        }
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            .acordeon-header {
+                font-size: 20px; /* Reduzir tamanho do texto */
+                padding: 12px; /* Ajustar espaçamento */
+            }
+
+            .acordeon-icon {
+                font-size: 30px; /* Reduzir tamanho do ícone */
+            }
+
+            .acordeon-content {
+                font-size: 14px; /* Reduzir tamanho do texto do conteúdo */
+                padding: 10px; /* Reduzir espaçamento interno */
+            }
+
+            .acordeon-content p {
+                margin: 15px; /* Ajustar margem para menor espaçamento */
+            }
+            .acordeon-headerb {
+                font-size: 20px; /* Reduzir tamanho do texto */
+                padding: 12px; /* Ajustar espaçamento */
+            }
+
+            .acordeon-icon {
+                font-size: 30px; /* Reduzir tamanho do ícone */
+            }
+
+            .acordeon-contentb {
+                font-size: 14px; /* Reduzir tamanho do texto do conteúdo */
+                padding: 10px; /* Reduzir espaçamento interno */
+            }
+
+            .acordeon-contentb p {
+                margin: 15px; /* Ajustar margem para menor espaçamento */
+            }
+
+            .acordeon-headerc {
+                font-size: 20px; /* Reduzir tamanho do texto */
+                padding: 12px; /* Ajustar espaçamento */
+            }
+
+            .acordeon-icon {
+                font-size: 30px; /* Reduzir tamanho do ícone */
+            }
+
+            .acordeon-contentc {
+                font-size: 14px; /* Reduzir tamanho do texto do conteúdo */
+                padding: 10px; /* Reduzir espaçamento interno */
+            }
+
+            .acordeon-contentc p {
+                margin: 15px; /* Ajustar margem para menor espaçamento */
+            }
+            .acordeon-headerd {
+                font-size: 20px;
+                padding: 12px;
+            }
+
+            .acordeon-contentd {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .acordeon-contentd p {
+                margin: 15px;
+            }
+        }
+        /* Responsividade para telas menores ainda (480px) */
+        @media (max-width: 480px) {
+            .acordeon-header {
+                font-size: 14px; /* Reduz ainda mais o tamanho do texto */
+                padding: 10px; /* Ajustar espaçamento */
+            }
+
+            .acordeon-icon {
+                font-size: 25px; /* Reduzir tamanho do ícone */
+            }
+
+            .acordeon-content {
+                font-size: 13px; /* Reduzir tamanho do texto do conteúdo */
+                padding: 8px; /* Reduzir espaçamento interno */
+            }
+
+            .acordeon-content p {
+                margin: 10px; /* Ajustar margem para menor espaçamento */
+                font-size: 19px;
+            }
+            .acordeon-headerb {
+                font-size: 16px; /* Reduz ainda mais o tamanho do texto */
+                padding: 10px; /* Ajustar espaçamento */
+            }
+
+            .acordeon-icon {
+                font-size: 25px; /* Reduzir tamanho do ícone */
+            }
+
+            .acordeon-contentb {
+                font-size: 13px; /* Reduzir tamanho do texto do conteúdo */
+                padding: 8px; /* Reduzir espaçamento interno */
+            }
+
+            .acordeon-contentb p {
+                margin: 10px; /* Ajustar margem para menor espaçamento */
+                font-size: 19px;
+            }
+
+            .acordeon-headerc {
+                font-size: 14px; /* Reduz ainda mais o tamanho do texto */
+                padding: 10px; /* Ajustar espaçamento */
+            }
+
+            .acordeon-icon {
+                font-size: 25px; /* Reduzir tamanho do ícone */
+            }
+
+            .acordeon-contentc {
+                font-size: 13px; /* Reduzir tamanho do texto do conteúdo */
+                padding: 8px; /* Reduzir espaçamento interno */
+            }
+
+            .acordeon-contentc p {
+                margin: 10px; /* Ajustar margem para menor espaçamento */
+                font-size: 19px;
+            }
+            .acordeon-headerd {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .acordeon-contentd {
+                font-size: 13px;
+                padding: 8px;
+            }
+
+            .acordeon-contentd p {
+                margin: 10px;
+                font-size: 19px;
+            }
+        }
+        /* ======== AJUSTE DE RESPONSIVIDADE PARA ACORDEONS COM MATHJAX ======== */
+
+        /* Base: Desktop */
+        .acordeon-content p {
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            text-align: justify;
+            line-height: 1.8em;
+        }
+
+        .acordeon-content p mjx-container,
+        .acordeon-content p span {
+            max-width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+        /* ===== Responsividade ===== */
+        @media (max-width: 768px) {
+            .acordeon-container {
+                width: 95%;
+                margin: 0 auto;
+            }
+
+            .acordeon-content p {
+                font-size: 1rem !important;
+                line-height: 1.6em !important;
+                text-align: center;
+
+                /* ✅ Rolagem horizontal só no mobile */
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .acordeon-content p mjx-container {
+                font-size: 95% !important;
+                display: inline-block;
+                overflow-x: auto;
+                max-width: 100%;
+            }
+
+            /* ✅ Scrollbar discreta no mobile */
+            .acordeon-content p::-webkit-scrollbar {
+                height: 6px;
+            }
+            .acordeon-content p::-webkit-scrollbar-thumb {
+                background: #b87cd9;
+                border-radius: 10px;
+            }
+            .acordeon-content p::-webkit-scrollbar-track {
+                background: transparent;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .acordeon-content p {
+                font-size: 0.95rem !important;
+                padding: 0 5px;
+            }
+
+            .acordeon-content p mjx-container {
+                font-size: 90% !important;
+            }
+
+            .acordeon-content {
+                overflow-x: hidden;
+            }
+        }
+        /* ======== AJUSTE DE RESPONSIVIDADE PARA ACORDEONS COM MATHJAX (VERSÃO COLORIDA) ======== */
+
+        /* Base: Desktop */
+        .acordeon-contentc p {
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            text-align: justify;
+            line-height: 1.8em;
+        }
+
+        .acordeon-contentc p mjx-container,
+        .acordeon-contentc p span {
+            max-width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* ===== Responsividade ===== */
+        @media (max-width: 768px) {
+            .acordeon-container {
+                width: 95%;
+                margin: 0 auto;
+            }
+
+            .acordeon-contentc p {
+                font-size: 1rem !important;
+                line-height: 1.6em !important;
+                text-align: center;
+
+                /* ✅ Rolagem horizontal só no mobile */
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .acordeon-contentc p mjx-container {
+                font-size: 95% !important;
+                display: inline-block;
+                overflow-x: auto;
+                max-width: 100%;
+            }
+
+            /* ✅ Scrollbar discreta no mobile */
+            .acordeon-contentc p::-webkit-scrollbar {
+                height: 6px;
+            }
+            .acordeon-contentc p::-webkit-scrollbar-thumb {
+                background: #b87cd9;
+                border-radius: 10px;
+            }
+            .acordeon-contentc p::-webkit-scrollbar-track {
+                background: transparent;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .acordeon-contentc p {
+                font-size: 0.95rem !important;
+                padding: 0 5px;
+            }
+
+            .acordeon-contentc p mjx-container {
+                font-size: 90% !important;
+            }
+
+            .acordeon-contentc {
+                overflow-x: hidden;
+            }
+        }
+        /* ===== BLOCO REGRA DE SINAIS ===== */
+        .bloco-regra {
+            display: inline-block;
+            text-align: left;
+            line-height: 1.8em;
+            font-size: 1.1rem;
+            padding: 15px 25px;
+            border: 2px solid #9F43BE;
+            border-radius: 10px;
+            background-color: #FFF;
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+            word-wrap: break-word;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            color: #000;
+        }
+       .linha-centro {
+            text-align: center;
+            display: block;
+            margin: 10px 0;
+        }
+            /* Centraliza o bloco dentro do parágrafo */
+        p.bloco-regra {
+            display: block;
+            text-align: left;
+        }
+
+                /* ===== Responsividade ===== */
+        @media (max-width: 768px) {
+            .bloco-regra {
+                font-size: 1rem;
+                line-height: 1.7em;
+                padding: 12px 18px;
+                max-width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bloco-regra {
+                font-size: 0.95rem;
+                padding: 10px 15px;
+                border-width: 1.5px;
+                max-width: 95%;
+            }
+        }
+
+         /* TESTES */
+
+        .quadro-problema {
+            max-width: 800px;
+            width: 95%; /* adapta o quadro à tela menor */
+            margin: 20px auto;
+            border: 2px solid #015A42;
+            border-radius: 10px;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .quadro-problema .topo {
+            background-color: #ffffff;
+            padding: 10px;
+            
+        }
+
+        .quadro-problema .resolucao {
+            background-color: #E2F4EB;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .quadro-problema h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .quadro-problema p {
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .quadro-problema code {
+            background-color: #d9f0e1;
+            padding: 2px 4px;
+            border-radius: 20px;
+            font-family: monospace;
+        }
+        .figura-container-reduzida {
+            text-align: center; /* centraliza a imagem */
+            margin: 15px 0; /* espaço acima e abaixo da imagem */
+        }
+
+        .figura-container-reduzida img {
+            max-width: 50%; /* imagem ocupa a largura total no mobile */
+            height: auto; /* mantém proporção */
+            border-radius: 4px; /* opcional, suaviza bordas */
+        }
+        
+        .resolucao .item-recuado {
+            display: block;
+            padding-left: 25px !important;
+            position: relative;
+        }
+
+        .resolucao .item-recuado::before {
+            position: absolute;
+            left: 10px;   /* posição do ponto */
+            top: 0;
+            font-weight: bold;
+        }
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .quadro-problema {
+                width: 90%;
+                font-size: 15px;
+            }
+            .quadro-problema .resolucao {
+        padding: 15px 14px; /* mais respiro lateral */
+        overflow-x: auto; /* permite rolagem horizontal se fórmula for muito longa */
+        -webkit-overflow-scrolling: touch;
+        border-radius: 0 0 10px 10px;
+    }
+
+            .quadro-problema p {
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .figura-container-reduzida img {
+                max-width: 100%; /* imagem se ajusta completamente */
+            }
+
+            .quadro-problema .resolucao {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quadro-problema {
+                width: 95%;
+                border-width: 1.5px;
+            }
+
+            .quadro-problema p {
+                font-size: 14px;
+            }
+
+            .figura-container-reduzida img {
+                max-width: 100%;
+            }
+        }
+
+        .slider-texto-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            border: 2px solid #3a95a6;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            overflow: hidden;
+            background-color: #FFF;
+            border-radius: 8px;
+        }
+        .slider-texto-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide-texto {
+            display: none;
+            flex-shrink: 0;
+            width: 100%;
+            text-align: center;
+            word-break: keep-all;
+            white-space: normal;
+            
+        }
+
+        .slide-texto.ativo {
+            display: block;
+        }
+
+        /* Container de imagens dentro do slide */
+        .slide-imagens {
+            display: flex;
+            flex-direction: column; /* padrão: empilha vertical */
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px; /* espaçamento interno para não colar nas bordas */
+            box-sizing: border-box;
+        }
+                /* Apenas para slides com imagens maiores */
+        .slide-com-imagens-maiores .slider-img {
+            max-width: 400px;  /* aumenta o tamanho */
+            max-height: 400px;
+        }
+                /* Apenas para slides com imagens maiores */
+        .slide-com-tres-imagens .slider-img {
+            max-width: 300px;  /* aumenta o tamanho */
+            max-height: 300px;
+        }
+
+        /* Responsividade: telas menores empilham colunas */
+        @media (max-width: 768px) {
+                        /* Apenas para slides com imagens maiores */
+            .slide-com-imagens-maiores .slider-img {
+                max-width: 200px;  /* aumenta o tamanho */
+                max-height: 200px;
+            }
+                /* Apenas para slides com imagens maiores */
+            .slide-com-tres-imagens .slider-img {
+                max-width: 150px;  /* aumenta o tamanho */
+                max-height: 150px;
+            }
+        }
+
+        /* Apenas slides que possuem colunas */
+        .slide-imagens.colunas {
+            display: flex;
+            flex-direction: row; /* colunas lado a lado */
+            justify-content: center; /* centraliza colunas no slide */
+            gap: 20px; /* espaço entre colunas */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Colunas individuais */
+        .coluna-imagem {
+            display: flex;
+            flex-direction: column; /* empilha imagens dentro da coluna */
+            gap: 10px; /* espaço entre imagens */
+            align-items: center; /* centraliza horizontalmente */
+            justify-content: center; /* centraliza verticalmente dentro da coluna */
+            flex: 1; /* cada coluna ocupa largura proporcional igual */
+        }
+
+        /* Responsividade: telas menores empilham colunas */
+        @media (max-width: 768px) {
+            .slide-imagens.colunas {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        /* Imagens zoomable pequenas */
+        .slider-img {
+            max-width: 250px; /* ajuste o tamanho desejado */
+            max-height: 250px;
+            cursor: pointer; /* indica que pode ser clicada */
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        .slider-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .titulo-texto {
+            color: #b9e5a9;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-family: 'Roboto', sans-serif;
+            width: 100%;
+        }
+
+        .conteudo-texto {
+            font-size: 16px !important;
+            color: #333 !important;
+            font-family: 'Roboto', sans-serif !important;
+            width: 100%;
+            margin: 0 auto;
+            word-break: normal;
+            white-space: normal;
+            text-align: center !important;
+        }
+        .titulo-texto,
+        .conteudo-texto {
+            word-break: break-word;
+            white-space: normal;
+        }
+        .seta-texto {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+            font-size: 30px;
+            color: #3a95a6;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .seta-texto.esquerda {
+            left: 0;
+        }
+
+        .seta-texto.direita {
+            right: 0;
+        }
+
+    @media (max-width: 768px) {
+        .titulo-texto {
+            font-size: 20px;
+        }
+
+        .conteudo-texto {
+            font-size: 18px;
+        }
+
+        .seta-texto {
+            font-size: 24px;
+        }
+    }
+        .slider-texto-indicadores {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .dot-texto {
+            height: 12px;
+            width: 12px;
+            margin: 0 6px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot-texto.ativo {
+            background-color: #3a95a6;
+        }
+        /* ------------------- */
+        /* TEMAS DE COR        */
+        /* ------------------- */
+
+        /* Tema verde */
+        .tema-verde {
+            border-color: #015A42;
+        }
+        .tema-verdeborda {
+            border-color: #015A42 !important;
+        }
+        .tema-verde .seta-texto {
+            color: #015A42;
+        }
+        .tema-verde .dot-texto.ativo {
+            background-color: #015A42;
+        }
+
+        /* Tema roxo */
+        .tema-roxo {
+            border-color: #015A42;
+        }
+        .tema-roxo .seta-texto {
+            color: #015A42;
+        }
+        .tema-roxo .dot-texto.ativo {
+            background-color: #015A42;
+        }
+
+        /* Tema roxo */
+        .tema-green {
+            border-color: #9F43BE;
+        }
+        .tema-green .seta-texto {
+            color: #9F43BE;
+        }
+        .tema-green .dot-texto.ativo {
+            background-color: #9F43BE;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .seta-texto { font-size: 24px; }
+            .conteudo-texto { font-size: 18px; }
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 600px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            min-height: 180px; /* mantém proporção mínima */
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 180px;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Frente */
+        .flip-card-front {
+            background-color: #9F43BE;
+            color: white;
+            font-weight: bold;
+            border: 2px solid #9F43BE;
+        }
+
+        /* Verso */
+        .flip-card-back {
+            background-color: white;
+            color: #9F43BE;
+            border: 2px solid #9F43BE;
+            transform: rotateY(180deg);
+            font-weight: 500;
+        }
+        .flip-card-front, .flip-card-back {
+            height: auto;
+            min-height: 180px;
+        }
+        /* Responsividade aprimorada */
+        @media (max-width: 768px) {
+            .cards-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 500px;
+            }
+
+            .flip-card {
+            aspect-ratio: 1 / 1.2;
+            }
+
+            .flip-card-front,
+            .flip-card-back {
+            font-size: 0.9rem;
+            padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            }
+
+            .flip-card {
+            aspect-ratio: 1 / 1.3;
+            }
+
+            .flip-card-front,
+            .flip-card-back {
+            font-size: 0.85rem;
+            padding: 8px;
+            }
+        }
+
+        /* === Temas reutilizáveis para os flip-cards === */
+
+            /* Tema Verde */
+            .tema-verde .flip-card-front {
+                background-color: #015A42;
+                border-color: #015A42;
+                color: #FFFFFF;
+            }
+
+            .tema-verde .flip-card-back {
+                background-color: #FFFFFF;
+                border-color: #015A42;
+                color: #015A42;
+            }
+            /* --- Centraliza o 3º card apenas quando houver exatamente 3 cards --- */
+        /* Seleciona o 3º card e garante que ele seja o último (ou seja, existem exatamente 3) */
+        .cards-container > .flip-card:nth-child(3):last-child {
+            grid-column: 1 / -1;   /* ocupa as duas colunas do grid */
+            justify-self: center;  /* centraliza dentro da área que ocupa */
+            max-width: 280px;      /* controla largura para não esticar — ajuste se quiser */
+            width: 100%;           /* mantém o comportamento responsivo */
+        }
+
+        /* Ajuste do gap quando o 3º card ocupa toda a linha (opcional) */
+        .cards-container > .flip-card:nth-child(3):last-child + .flip-card {
+            /* regra só por segurança — não deve haver elementos depois, pois é o last-child */
+        }
+
+        /* Responsividade: mantemos o mesmo comportamento em telas menores */
+        @media (max-width: 768px) {
+            .cards-container > .flip-card:nth-child(3):last-child {
+                max-width: 45%; /* menor para telas menores — ajuste conforme necessário */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-container > .flip-card:nth-child(3):last-child {
+                max-width: 90%; /* em telas muito estreitas deixa ficar quase full-width */
+            }
+        }
+                /* === Tamanho fixo apenas para os flip-cards de PLASTOS e VACÚOLOS === */
+        .cards-container.dupla-fixa {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            justify-content: center;
+            align-items: start;
+        }
+
+        .cards-container.dupla-fixa .flip-card {
+            width: 320px;   /* largura fixa igual */
+            height: 380px;  /* altura fixa igual */
+            margin: 0 auto;
+        }
+
+        .cards-container.dupla-fixa .flip-card-inner {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cards-container.dupla-fixa .flip-card-front,
+        .cards-container.dupla-fixa .flip-card-back {
+            height: 100%;
+            overflow-y: auto; /* evita vazamento vertical */
+            padding: 18px;
+            box-sizing: border-box;
+        }
+        /* === Cores personalizadas apenas para os flip-cards da dupla-fixa === */
+        .cards-container.dupla-fixa .flip-card-back {
+            color: #015A42; /* roxo escuro para o texto */
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .cards-container.dupla-fixa {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-container.dupla-fixa .flip-card {
+                width: 90%;
+                height: auto;
+                min-height: 320px;
+            }
+        }
+        .tabs-container {
+            width: 600px;
+        }
+
+        /* Abas */
+        .tab-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+        }
+
+        .tab-button {
+            flex: 1;
+            background-color: #9F43BE;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .tab-button:not(:last-child) {
+            border-right: 2px solid white;
+        }
+
+        .tab-button:hover {
+            background-color: #b95cd5;
+        }
+
+        .tab-button.active {
+            background-color: white;
+            color: #9F43BE;
+            border: 2px solid #9F43BE;
+            font-weight: 700;
+        }
+
+        /* Conteúdo */
+        .tab-content {
+            border: 2px solid #9F43BE;
+            border-radius: 10px;
+            background-color: white;
+            padding: 40px;
+            display: none;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ===========================
+        🔹 Responsividade adicionada
+        =========================== */
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            .tabs-container {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .tab-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .tab-button {
+                flex: 1 1 45%;
+                font-size: 14px;
+                padding: 8px 4px;
+                border-radius: 8px;
+            }
+
+            .tab-content {
+                padding: 25px;
+                font-size: 15px;
+            }
+        }
+
+        /* Celulares */
+        @media (max-width: 480px) {
+            .tabs-container {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .tab-button {
+                flex: none;
+                width: 100%;
+                font-size: 14px;
+                padding: 10px;
+                border-radius: 8px;
+                border-right: none;
+            }
+
+            .tab-content {
+                padding: 20px;
+                font-size: 14px;
+            }
+        }
+                /* Tema verde exclusivo para esses tabs */
+        .tabs-container.tema-verde {
+            --tab-color-default: #015A42;
+            --tab-color-active: #01332d;
+            --tab-color-hover: #017155;
+            --tab-text-color: #ffffff;
+            --tab-border-color: #015A42;
+        }
+
+        /* Aplica as variáveis apenas dentro do tema */
+        .tabs-container.tema-verde .tab-button {
+            background-color: var(--tab-color-default);
+            color: var(--tab-text-color);
+        }
+
+        .tabs-container.tema-verde .tab-button:hover {
+            background-color: var(--tab-color-hover);
+        }
+
+        .tabs-container.tema-verde .tab-button.active {
+            background-color: white;
+            color: var(--tab-color-default);
+            border-bottom: none;
+                border: 2px solid;
+        }
+
+        .tabs-container.tema-verde .tab-content {
+            border: 2px solid var(--tab-border-color);
+        }
+        .play-icon {
+            display: flex; /* Flexbox para centralizar o conteúdo */
+            justify-content: center;
+            align-items: center;
+            background-color: #015A42; /* Fundo verde */
+            color: #FFF; /* Ícone branco */
+            width: 90px; /* Largura do botão */
+            height: 55px; /* Altura do botão */
+            border-radius: 13px;
+            font-size: 40px; /* Tamanho do ícone */
+            cursor: pointer; /* Cursor de clique */
+            transition: transform 0.3s ease; /* Efeito de transição */
+        }
+
+        .play-icon:hover {
+            transform: scale(1.1); /* Aumenta levemente no hover */
+        }
+                /* Responsividade - Ajuste para telas menores */
+        @media (max-width: 768px) {
+            .play-icon {
+                width: 60px; /* Diminui a largura */
+                height: 40px; /* Diminui a altura */
+                font-size: 25px; /* Diminui o tamanho do ícone */
+            }
+        }
+        /* Modal - Oculto por padrão */
+        .video-modal {
+            display: none; /* Inicialmente o modal está oculto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro transparente */
+            z-index: 1000; /* Garantir que o modal fique acima de outros conteúdos */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Conteúdo do modal (onde ficará o vídeo) */
+        .video-content {
+            position: relative;
+            background-color: #015A42;
+            border-radius: 10px;
+            padding: 20px;
+        }
+         
+        /* Responsividade - Ajustes para dispositivos móveis */
+        @media (max-width: 768px) {
+            .video-content {
+                max-width: 100%; /* Maximize a largura do modal no mobile */
+                padding: 10px;
+            }
+
+            .video-content iframe {
+                width: 100%; /* O iframe ocupará toda a largura disponível */
+                height: 56.25vw; /* Isso mantém a proporção de 16:9 */
+                max-height: 80vh; /* Evita que o vídeo ultrapasse a tela */
+                border-radius: 10px;
+            }
+        }
+
+        /* Botão de fechar */
+        .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 40px;
+            color: #FFF;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .close-btn:hover {
+            transform: scale(1.2); /* Aumenta levemente no hover */
+            color: #FF0000; /* Muda a cor para vermelho no hover */
+        }
+                /* Container */
+        .video-play-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        /* Botão circular */
+        .video-play-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #017A5A, #015A42); /* Gradiente verde */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            color: #FFF;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            font-size: 55px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        /* Efeito pulsante */
+        .video-play-btn::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid rgba(1,90,66,0.6);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            70% { transform: scale(1.3); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        .video-play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        /* Texto abaixo */
+        .video-play-text {
+            margin-top: 10px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #015A42;
+            font-weight: 600;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .video-play-btn {
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+            }
+
+            .video-play-btn::after {
+                width: 85px;
+                height: 85px;
+            }
+
+            .video-play-text {
+                font-size: 14px;
+            }
+        }
+
+        .video-row {
+            display: flex;
+            justify-content: center; /* centraliza os vídeos */
+            gap: 50px; /* espaço entre os players */
+            flex-wrap: wrap; /* quebra para baixo em telas pequenas */
+            margin: 30px 0;
+        }
+
+        .video-row .video-play-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+         .download-section {
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+            }
+            .download-btn {
+                background-color: #9F43BE;
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 10px 15px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s ease;
+                font-weight: bold;
+                margin-top: 80px;
+            }
+
+            .download-btn i {
+                font-size: 18px;
+            }
+
+            .download-btn:hover {
+                background-color: #7D3598;
+            }
+                        /* ===== Seções de Conclusão e Referências ===== */
+        .conclusao, .referencias {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .conclusao {
+            background-color: #E2F4EB; /* fundo suave */
+        }
+
+        .referencias {
+            background-color: #FFF;
+            border-top: 3px solid #015A42;
+            border-bottom: 3px solid #015A42;
+        }
+
+        /* Títulos */
+        .titulo-conclusao, .titulo-referencias {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 50px;
+            font-weight: lighter;
+            color: #015A42;
+            margin: 10px auto 20px auto;
+            text-align: left; /* garante centralização em desktop */
+        }
+
+        /* Caixas de texto */
+        .conclusao .caixa-texto, 
+        .referencias .caixa-texto {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Parágrafos */
+        .conclusao .caixa-texto p,
+        .referencias .caixa-texto p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 19px;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* Cores de texto diferentes */
+        .conclusao .caixa-texto p {
+            color: #333;
+        }
+        .referencias .caixa-texto p {
+            color: #000;
+        }
+
+        /* Links em referências */
+        .referencias .caixa-texto a {
+            word-break: break-all;
+            color: #015A42;
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .titulo-conclusao, .titulo-referencias {
+                font-size: 2rem;
+            }
+            .conclusao .caixa-texto p,
+            .referencias .caixa-texto p {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            .conclusao .caixa-texto, 
+            .referencias .caixa-texto {
+                max-width: 95%;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .titulo-conclusao, .titulo-referencias {
+                font-size: 1.8rem;
+            }
+            .conclusao .caixa-texto, 
+            .referencias .caixa-texto {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+
+        /* Estilização do rodapé */
+        .footer {
+            border-top: 3px solid #015A42; /* Borda superior */
+            background-color: #FFFFFF; /* Fundo branco */
+            text-align: center; /* Centralizar texto */
+            padding: 15px 0; /* Espaçamento interno */
+            box-sizing: border-box; /* Inclui padding nas dimensões */
+        }
+
+        .footer p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #015A42; /* Cor do texto */
+            margin: 0; /* Remove espaçamento externo */
+        }
+        /* Texto descritivo */
+        .footer .fonte-menor {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            color: #555; /* Cor neutra */
+            line-height: 1.5; /* Espaçamento entre linhas */
+            display: block; /* Garante quebra para nova linha */
+            margin-top: 10px; /* Espaço entre o texto e o divisor */
+        }
+                /* Divisor */
+        .footer-divider {
+            border: none; /* Remove borda padrão */
+            height: 1px; /* Altura da linha */
+            background-color: #015A42; /* Cor da linha */
+            margin: 10px auto; /* Espaçamento vertical */
+            width: 80%; /* Define a largura do divisor */
+            opacity: 0.5; /* Reduz opacidade para suavizar */
+        }
+                /* Ajustes do rodapé para mobile */
+        @media (max-width: 480px) {
+            .footer p {
+                font-size: 15px; /* Ajusta o tamanho da fonte */
+            }
+            .footer .fonte-menor {
+                font-size: 12px; /* Reduz tamanho da fonte */
+                line-height: 1.4; /* Ajusta o espaçamento */
+            }
+            .footer-divider {
+                width: 100%; /* Ajusta largura do divisor no mobile */
+            }
+        }
+        .logo-final {
+            background-color: #b9e5a92c;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 3px solid #015A42;
+        }
+
+        .logo-final img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+        /* Nova seção com os títulos ocupando a tela inteira */
+        .ficha-titulos {
+            background-color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .ficha-titulos h2,
+        .ficha-titulos h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-weight: lighter;
+            font-size: 40px;
+            color: #0058B4;
+            margin: 10px 0;
+        }
+
+        /* Mantemos a ficha técnica como estava */
+        .ficha-tecnica {
+            background-color: #FFF;
+            padding: 60px 20px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+
+        .ficha-tecnica p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 15px auto;
+            max-width: 700px;
+        }
+
+        .ficha-tecnica strong {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .paragraforeduzido {
+            font-size: 14px;
+        }
+
+        /* Container dos vídeos */
+        .container-videos {
+            border: 2px solid #015A42;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+    </style>
+</head>
+<body>
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://drive.google.com/thumbnail?id=1iZTd5_tOqqVTFtrgbqdKazN1J1Yk-PuE" alt="Logo">
+            </div>
+            <div class="menu-toggle">
+                <i class="bx bx-menu"></i>
+                <i class="bx bx-x" style="display: none;"></i> <!-- Ícone de fechar menu -->
+            </div>
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#secao1">Tópico 1</a></li>
+                <li><a href="#secao2">Tópico 2</a></li>
+                <li><a href="#secao3">Tópico 3</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+                <li><a href="#referencias">Refs Bibliográficas</a></li>
+            </ul>
+        </div>
+        
+        
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        
+        <!-- Capa do Livro -->
+        <section id="capa-livro" class="capa-livro">
+            <div class="borda superior"></div>
+            <div class="conteudo-capa">
+                <h1 class="titulo-programa">PROGRAMA DE ATUALIZAÇÃO em fundamentos da</h1>
+                <h1 class="titulo-materia">Matemática PARA ENGENHARIA - NÍVEL 1</h1>
+                <h2 class="subtitulo-professor">Profª MEª Elisabeth Conceição Sena Gonçalves</h2>
+                <h2 class="subtitulo-professor">Profª MEª FlÁvia Cristina Franco de Lima ROSA</h2>
+            </div>
+            <div class="borda inferior"></div>
+        </section>
+        
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        <section id="titulo" class="titulo-intro">
+            <h1 class="titulo-programa"></h1>
+        </section>
+        <!-- ESPAÇAMENTO -->
+        
+        
+        <!-- Seção Introdução -->
+        <section id="introducao" class="introducao">
+            <!-- Barra Superior -->
+            <div class="barra-superior">
+                <h1 class="titulo-barra">UNIDADE 3 | RAZÃO E PROPORÇÃO, PORCENTAGEM E REGRA DE TRÊS</h1>
+            </div>
+        
+            <!-- Conteúdo -->
+            <div class="caixa-texto">
+                <div class="conteudo-centralizado">
+                    <h1 class="titulo-introducao">INTRODUÇÃO</h1>
+                    <p>
+                        Você já se deparou com situações do dia a dia em que precisou comparar quantidades, calcular descontos
+                        ou entender como o tempo e a quantidade de pessoas podem influenciar uma tarefa? Pois é justamente
+                        esse tipo de raciocínio que vamos retomar nesta unidade. Vamos revisar juntos os conceitos de razão,
+                        proporção, porcentagem e regra de três, ferramentas que ajudam a lidar com números de forma prática e
+                        eficiente. Seja para entender uma oferta em uma loja, interpretar um gráfico de crescimento populacional
+                        ou planejar um orçamento, esses conhecimentos aparecem com mais frequência do que a gente imagina.
+                    </p>
+                    <p>
+                        Nosso objetivo é fazer com que você se sinta seguro para aplicar esses conceitos em contextos diversos.
+                        Vamos relembrar como as razões comparam grandezas, como as proporções permitem resolver equações
+                        simples, como a porcentagem facilita a leitura de dados em contextos comerciais e sociais e como a regra
+                        de três, tanto simples quanto composta, oferece caminhos diretos para resolver situações que envolvem
+                        relações proporcionais. Tudo será construído com exemplos claros e próximos da realidade, para que
+                        cada conteúdo faça sentido e possa ser aplicado sempre que necessário.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="secao1" id="secao1">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    1. RAZÃO
+                </h1>
+            </div>
+
+            <p>
+                Na matemática, o conceito de razão tem grande importância na compreensão de situações do dia a dia,
+                pois permite comparar grandezas de forma objetiva e proporcional. Quando dizemos, por exemplo, que um
+                carro percorre 100 quilômetros com 5 litros de combustível, estamos utilizando uma razão para representar
+                o consumo. Essa comparação entre duas quantidades, que podem ter ou não a mesma unidade, aparece
+                em contextos variados, como na leitura de mapas, na análise de preços, na velocidade média de um
+                trajeto ou até mesmo na divisão justa de um valor entre pessoas. A razão ajuda a estabelecer relações
+                claras entre números, facilitando a interpretação de dados e a tomada de decisões em situações práticas.
+                Por isso, dominar esse conceito é fundamental não apenas para resolver exercícios matemáticos, mas
+                também para lidar com situações que exigem análise quantitativa no cotidiano.
+            </p>
+
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 1</strong>.</span> Representações visuais da Proporção Áurea e da Sequência de Fibonacci</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1763572856/figura01_zsvmoc.png"
+                        alt="">
+                </div>
+            
+                <!-- Fonte -->
+                <p class="fonte-imagem"><strong><i>Fonte</strong>: designer_things / Freepik.</i></p>
+            
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta uma série de composições geométricas que ilustram a presença da proporção áurea e da sequência
+                    de Fibonacci em diferentes arranjos visuais. À esquerda, observa-se uma torre formada por quadrados decrescentes
+                    empilhados verticalmente,
+                    sugerindo o decrescimento exponencial da sequência. Logo ao lado, há representações com retângulos e quadrados que se
+                    encaixam formando
+                    padrões espiralados. No centro, uma espiral é construída a partir de retângulos proporcionais entre si, evidenciando a
+                    razão áurea. Em diferentes
+                    quadros, círculos de tamanhos de diâmetros variados estão organizados segundo valores da sequência de Fibonacci, como
+                    um, dois, três, cinco,
+                    oito e treze. Outros quadros apresentam esses círculos com letras e apóstrofos, indicando variações ou grupos distintos
+                    de proporções. A imagem
+                    como um todo explora as relações matemáticas que estruturam tanto formas naturais quanto obras humanas, destacando o uso
+                    da proporção áurea como elemento recorrente de harmonia visual.
+            </section>
+            <br>
+            
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.1 DEFINIÇÃO
+                </h1>
+            </div>
+            <p>
+                A razão entre dois números a e b pode ser expressa por \( \frac{a}{b} \) ou \( a : b \), desde que \(b\) seja diferente de
+                zero. Isso significa que estamos fazendo uma comparação entre dois valores, verificando quantas vezes
+                um deles cabe dentro do outro ou qual é a relação entre suas quantidades. Por exemplo, se tivermos a
+                razão 8/4, estamos dizendo que o número 8 é o dobro de 4. Essa comparação pode ser útil em diversas
+                situações, como entender proporções em uma receita culinária, calcular o rendimento de um produto
+                ou interpretar uma escala em um mapa. Vale lembrar que, como toda divisão, não é possível dividir por
+                zero, por isso, é necessário que o denominador (o número \({b}\)) seja diferente de zero. A razão, portanto,
+                é uma forma eficiente de representar uma relação entre dois valores e serve de base para muitos outros
+                conceitos matemáticos, como proporções, escalas, porcentagens e regras de três.
+            </p>
+
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 2</strong>.</span> Elementos de uma razão matemática</h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1764173974/figura2_fypdlm.png"
+                        alt="">
+                </div>
+            
+                <!-- Fonte -->
+                <p class="fonte-imagem"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+            
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta uma representação esquemática da razão entre dois termos, utilizando uma fração com a letra “\({a}\)” no numerador e a letra “\({b}\)” no denominador. Ao lado, duas setas apontam para a direita: a primeira seta parte da
+                    letra “\({a}\)” e indica o termo denominado antecedente; a segunda seta parte da letra “b ” e indica o termo denominado consequente. Essa visualização
+                    destaca que, em uma razão, o número que está acima da barra é chamado de antecedente e o número que está abaixo da barra é chamado de
+                    consequente. O fundo da imagem é azul claro, com setas azuis e letras em preto.
+            </section>
+            <br>
+            <p>
+                Podemos ler: \({a}\) está para \({b}\) ou \({a}\) para \({b}\) .
+            </p>
+            <br>
+            <p style="text-align:center;">
+                <span
+                    style="line-height: 2.5em; font-size:1.1rem; display:inline-block; padding:10px 30px; border:2px solid #9F43BE; border-radius:10px; background-color: #FFF; max-width: 600px; width: 100%;">
+                    <b>Exemplos:</b><br>
+                    \( \large \frac{2}{5} \quad \)2 está para 5 ou 2 para 5 <br>
+                    \( \large \frac{1}{4} \quad \)1 está para 4 ou 1 para 4
+                </span>
+            </p>
+            <br>
+            <p style="text-align:center;">
+                <span
+                    style="line-height: 2.5em; font-size:1rem; display:inline-block; padding:10px 30px; border:2px solid #9F43BE; border-radius:10px; background-color: #FFF; max-width: 600px; width: 100%;">
+                    <b>Exemplos:</b> A razão estabelece a comparação entre duas grandezas.
+                </span>
+            </p>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.2. RAZÕES ESPECIAIS
+                </h1>
+            </div>
+            <p>
+                Algumas razões são tão frequentemente aplicadas em contextos reais que recebem nomes específicos e
+                são amplamente utilizadas em diversas áreas do conhecimento. Alguns exemplos bastante comuns são
+                a <strong>escala, a densidade demográfica e a velocidade média</strong>. Clique nos botões para ler sobre elas:
+            </p>
+            <br>
+            <!-- Acordeons -->
+            <div class="acordeon-container">
+                <!-- Primeiro acordeon -->
+                <div class="acordeon">
+                    <div class="acordeon-headerc">
+                        ESCALA
+                        <i class="bx bx-chevron-down acordeon-icon"></i>
+                    </div>
+                    <div class="acordeon-contentc">
+                        <p>
+                            A escala indica a relação entre o tamanho de uma representação gráfica e o tamanho
+                            real do objeto ou local representado. Esse tipo de razão é essencial em plantas
+                            arquitetônicas, mapas e maquetes, pois permite representar grandes distâncias ou
+                            objetos em espaços reduzidos, mantendo as proporções corretas. A fórmula utilizada é:
+                            
+                        </p>
+                        <br>
+                        <p style="text-align: center;"> 
+                            \(\large \text{Escala} = \frac{\text{medida do desenho}}{\text{medida real}} \)
+                        </p>
+                        <br>
+                    </div>
+                </div>
+            
+                <!-- Segundo acordeon -->
+                <div class="acordeon">
+                    <div class="acordeon-headerc">
+                        DENSIDADE DEMOGRÁFICA
+                        <i class="bx bx-chevron-down acordeon-icon"></i>
+                    </div>
+                    <div class="acordeon-contentc">
+                        <p>
+                            A densidade demográfica é muito usada em geografia e estudos populacionais. Trata
+                            se da razão entre o número de habitantes de uma determinada região e a sua área
+                            total, normalmente expressa em habitantes por quilômetro quadrado. A fórmula é:
+                        </p>
+                        <br>
+                        <p style="text-align: center;">
+                            \(\large \text{Densidade demográfica} = \frac{\text{número de hab.}}{\text{área}} \)
+                        </p>
+                        <br>
+                        <p>
+                            Esse cálculo ajuda a entender o grau de ocupação de uma região, sendo útil para
+                            analisar questões como urbanização, infraestrutura e qualidade de vida.
+                        </p>
+                    </div>
+                </div>
+                <!-- Segundo acordeon -->
+                <div class="acordeon">
+                    <div class="acordeon-headerc">
+                        VELOCIDADE MÉDIA
+                        <i class="bx bx-chevron-down acordeon-icon"></i>
+                    </div>
+                    <div class="acordeon-contentc">
+                        <p>
+                            A velocidade média é bastante aplicada na física e em situações do cotidiano, como no
+                            deslocamento de veículos. Ela representa a razão entre a distância percorrida e o tempo
+                            necessário para percorrê-la, sendo expressa pela fórmula:
+                        </p>
+                        <br>
+                        <p style="text-align: center;">
+                            \(\large \text{Velocidade} = \frac{\text{distância}}{\text{tempo}} \)
+                        </p>
+                        <br>
+                        <p>
+                            Com esse tipo de razão, é possível estimar a duração de trajetos, comparar deslocamentos
+                            e planejar percursos com mais eficiência. Essas razões especiais demonstram como a
+                            matemática está presente em diferentes contextos práticos, oferecendo ferramentas para
+                            analisar, interpretar e tomar decisões com base em números.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.3 RAZÕES INVERSAS
+                </h1>
+            </div>
+            <p>
+                Dizemos que duas razões são inversas quando, ao multiplicá-las entre si, o resultado é igual a 1. Em
+                outras palavras, uma razão é considerada o inverso da outra quando seus termos são trocados de lugar, e
+                essa troca mantém uma relação equilibrada. Essa propriedade é útil em diversos contextos matemáticos,
+                especialmente na resolução de problemas envolvendo proporcionalidade inversa ou repartições em partes
+                inversamente proporcionais.
+            </p>
+            <br>
+            <div class="bloco-regra">
+            
+                <b>Exemplos:</b><br>
+            
+                1) As razões \( \large \frac{3}{4}\) e \( \large \frac{4}{3}\) são inversas porque, ao multiplicá-las, temos:
+
+                <br><br>
+
+                <div class="linha-centro">
+                    \( \large \frac{3}{4} \cdot\) \( \large \frac{4}{3} = \frac{12}{12} = {1}\)
+                </div>
+
+                <br>
+            
+                2) Outro exemplo simples é o número 4. Sua razão inversa é \( \large \frac{1}{4}\), pois
+
+                <br><br>
+                
+                <div class="linha-centro">
+                    \( {4} \large \cdot \frac{1}{4}\) \( \large = \frac{4}{1} \cdot \frac{1}{4} = {1}\)
+                </div>
+
+                <br>
+
+                3) Ou, ainda, \( \large \frac{3}{1}\) terá como inverso \( \large \frac{1}{3}\), e assim por diante.
+
+                <br><br>
+            </div>
+            <br>
+            <p>
+                Essa relação mostra como a inversão dos termos de uma razão altera a interpretação da comparação
+                original, mas mantém uma simetria matemática útil em diversos tipos de cálculo. Dominar esse conceito
+                é importante para compreender melhor problemas de divisão proporcional, velocidade relativa, trabalho
+                em equipe e outros exemplos em que essa ideia aparece aplicada.
+            </p>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.4. PROPORÇÃO
+                </h1>
+            </div>
+            <p>
+                Chamamos de proporção toda igualdade entre duas razões. Isso significa que duas comparações diferentes
+                estão equilibradas entre si. Dados os números racionais \(\large a\), \(\large b\) , \(\large c\) e \(\large d\) , todos diferentes de zero, dizemos
+                que eles formam uma proporção quando a razão entre \(\large a\) e \(\large b\) for igual a razão de \(\large c\) para \(\large d\).
+                Em termos matemáticos, isso é representado por: \( \large \frac{a}{b} \) = \(\large \frac{c}{d} \) ou \(\large a : b \) = \(\large c : d \).
+                Essa igualdade indica que a relação entre os dois primeiros números é a mesma que a dos dois últimos, permitindo comparações proporcionais entre
+                situações distintas.
+            </p>
+
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 3</strong>.</span> Propriedade fundamental das proporções
+                </h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1764173975/figura3_it0tzi.png" alt="">
+                </div>
+            
+                <!-- Fonte -->
+                <p class="fonte-imagem"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+            
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem apresenta duas razões representadas na forma de frações: a sobre b e c sobre d. Duas setas cruzadas
+                    conectam os elementos das frações, destacando os termos chamados de meios e extremos. A seta laranja conecta o termo “a”
+                    ao termo “d”, ambos denominados extremos, enquanto a seta marrom conecta o termo “b” ao termo “c”, identificando-os como meios. Ao
+                    lado, aparece a igualdade a vezes d igual a b vezes c, que expressa a propriedade fundamental das proporções: em uma proporção, o
+                    produto dos extremos é igual ao produto dos meios.
+            </section>
+            <br>
+            <p>
+                Por exemplo, na proporção \(\large \frac{4}{5} = \frac{8}{10}\), estamos dizendo que 4 está para 5 assim como 8 está para 10. Isso
+                pode ser visualizado tanto em situações concretas quanto em problemas matemáticos: se um desenho
+                foi ampliado ou reduzido mantendo suas proporções, ou se uma receita é dobrada mantendo a mesma
+                relação entre os ingredientes, as quantidades envolvidas formam proporções. Entender o que é uma
+                proporção ajuda a resolver problemas que envolvem escalas, conversões, porcentagens e regras de três,
+                pois permite manter relações consistentes entre grandezas distintas. É, portanto, um conceito fundamental
+                no estudo da matemática e na aplicação prática no dia a dia.
+            </p>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.5 PROPRIEDADE FUNDAMENTAL DAS PROPORÇÕES
+                </h1>
+            </div>
+            <p>
+                A propriedade fundamental das proporções afirma que, em toda proporção, o produto dos extremos é igual
+                ao produto dos meios. Dada uma proporção do tipo \( \large \frac{a}{b} \) = \(\large \frac{c}{d} \), 
+                essa propriedade nos permite afirmar que \( a \times d = b \times c \). 
+                Essa regra é muito útil porque possibilita resolver equações envolvendo razões, facilitando
+                o cálculo de valores desconhecidos. Ao aplicá-la, conseguimos transformar uma igualdade de frações em
+                uma multiplicação simples, que pode ser resolvida de forma direta.
+            </p>
+            <p>
+                Vamos observar isso nos exemplos dados:
+            </p>
+            <br>
+            <div class="bloco-regra">
+                <b>Exemplos:</b><br><br>
+            
+                a) Na proporção \( \large \frac{1}{2} = \frac{5}{10} \), aplicamos a propriedade fundamental e
+                multiplicamos os extremos \( 1 \times 10 \) e os meios \( 2 \times 5 \), resultando em \( 10 = 10 \),
+                o que confirma a igualdade.
+                <br><br>
+            
+                b) Na proporção \( \large \frac{3}{2} = \frac{6}{4} \), temos
+                \( 3 \times 4 = 12 \) e \( 2 \times 6 = 12 \), novamente comprovando que o produto dos extremos é igual ao produto
+                dos meios.
+                <br><br>
+            
+                c) Na proporção \( \large \frac{15}{3} = \frac{20}{x} \), aplicamos a propriedade fundamental:
+                \( 15 \times x = 3 \times 20 \), o que resulta em \( 15x = 60 \).
+                Para encontrar o valor de \( x \), basta dividir ambos os lados da equação por \( 15 \):
+                \( x = \frac{60}{15}\) portanto \(x = 4\).
+                <br><br>
+            
+                d) Na proporção \( \large \frac{y}{4} = \frac{25}{10} \), aplicamos o mesmo raciocínio:
+                \( y \times 10 = 4 \times 25 \), resultando em \( 10y = 100 \).
+                Dividindo ambos os lados por \( 10 \), encontramos \( y = \frac{100}{10}\), ou seja, \(y = 10\).
+            </div>
+            <br>
+            <p>
+                Esse tipo de resolução é bastante comum em problemas práticos, como os que envolvem regras de três,
+                escalas e comparações proporcionais, e mostra como a proporção é uma ferramenta versátil e eficaz na
+                resolução de cálculos envolvendo razões.
+            </p>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    1.6 OUTRAS PROPRIEDADES DAS PROPORÇÕES
+                </h1>
+            </div>
+            <p>
+                Além da propriedade fundamental das proporções, temos a inversão, a comutação, a adição de antecedentes
+                e consequentes e a subtração de antecedentes e consequentes. Clique nos botões para ler sobre:
+            </p>
+            <br>
+            <!-- Acordeons -->
+            <div class="acordeon-container">
+            
+                <!-- Primeiro acordeon -->
+                <div class="acordeon">
+                    <div class="acordeon-headerc">
+                        INVERSÃO
+                        <i class="bx bx-chevron-down acordeon-icon"></i>
+                    </div>
+                    <div class="acordeon-contentc">
+                        <p style="text-align: left;">
+                            Se \( \Large \frac{a}{b} = \frac{c}{d} \), então \( \Large \frac{b}{a} = \frac{d}{c} \).
+                        </p>
+                        
+                        <p>
+                            Ou seja, podemos inverter os termos de ambos os lados da proporção.
+                        </p>
+                    </div>
+                </div>
+            
+                <!-- Segundo acordeon -->
+                <div class="acordeon">
+                    <div class="acordeon-headerc">
+                        COMUTAÇÃO (OU PERMUTAÇÃO DOS MEIOS OU DOS EXTREMOS)
+                        <i class="bx bx-chevron-down acordeon-icon"></i>
+                    </div>
+                    <div class="acordeon-contentc">
+                        <p style="text-align: left;">
+                            Se \( \Large \frac{a}{b} = \frac{c}{d} \), então \( \Large \frac{a}{c} = \frac{b}{d} \).
+                            <br><br>
+                            Ou ainda: \( \Large \frac{d}{b} = \frac{c}{a} \).
+                        </p>
+                        
+                        <p>
+                            Podemos trocar os meios com os extremos e formar novas proporções equivalentes.
+                        </p>
+                    </div>
+                </div>
+            
+                <!-- Terceiro acordeon -->
+                <div class="acordeon">
+                    <div class="acordeon-headerc">
+                        ADIÇÃO DE ANTECEDENTES E CONSEQUENTES
+                        <i class="bx bx-chevron-down acordeon-icon"></i>
+                    </div>
+                    <div class="acordeon-contentc">
+                        <p style="text-align: left;">
+                            Se \(\Large \frac{a}{b} = \frac{c}{d} \), então
+                            \(\Large \frac{a + c}{b + d} = \frac{a}{b} = \frac{c}{d} \).
+                        </p>
+                        
+                        <p>
+                            Ou seja, a soma dos antecedentes está para a soma dos consequentes
+                            assim como cada razão original.
+                        </p>
+                    </div>
+                </div>
+            
+                <!-- Quarto acordeon -->
+                <div class="acordeon">
+                    <div class="acordeon-headerc">
+                        SUBTRAÇÃO DE ANTECEDENTES E CONSEQUENTES
+                        <i class="bx bx-chevron-down acordeon-icon"></i>
+                    </div>
+                    <div class="acordeon-contentc">
+                        <p style="text-align: left;">
+                            Se \(\Large \frac{a}{b} = \frac{c}{d} \), então
+                            \(\Large \frac{a - c}{b - d} = \frac{a}{b} = \frac{c}{d} \)
+                            
+                            (desde que \( a > c \) e \( b > d \)).
+                        </p>
+                      
+                        <p>
+                            A diferença dos antecedentes está para a diferença dos consequentes como cada razão original.
+                        </p>
+                    </div>
+                </div>
+            
+            </div>
+            <br>
+            <p>
+                Essas propriedades são úteis para transformar e resolver proporções em diversos contextos matemáticos
+                e problemas do cotidiano.
+            </p>
+        </section>
+        <section class="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    1.8 EXERCÍCIOS COMENTADOS
+                </h1>
+            </div>
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1</strong>. Num exame, 1200 candidatos disputam 400 vagas. Determine a razão entre o número de vagas e o
+                        número de candidatos.
+                    </p>
+            
+                </div>
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> A razão entre duas grandezas é obtida dividindo-se uma pela outra. Neste caso,queremos
+                    saber a relação entre vagas e candidatos, ou seja:</p>
+                    <br>
+                    <p style="text-align: center; font-size: 1.1rem;">
+                        \( \text{Razão} = \frac{\text{numero de vagas}}{\text{numero de candidatos}} = \frac {400}{1200} \)
+                    </p>
+                    <br>
+                    <p>
+                        Agora simplificamos a fração:
+                    </p>
+                    <p style="text-align: center; font-size: 1.1rem;">
+                        \( \large \frac {400}{1200} = \frac {1}{3} \)
+                    </p>
+                    <br>
+                    <p>
+                        Essa razão pode ser lida como: 1 vaga para cada 3 candidatos.
+                    </p>
+                    <p><strong>Resposta final:</strong>
+                        A razão entre o número de vagas e o número de candidatos é 1 para 3, ou seja, para cada
+                        vaga, há 3 candidatos concorrendo.
+                    </p>
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>2.</strong> Em uma determinada partida de basquete, um time fez 90 pontos. Sabe-se que um dos
+                        jogadores
+                        marcou 18 desses pontos. Determine a razão entre o número de pontos marcados por este jogador
+                        e o número total de pontos do time.
+                    </p>
+                </div>
+            
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Para calcular a razão entre duas quantidades, fazemos uma divisão entre elas.
+                        Neste caso:</p>
+            
+                    <p style="text-align: center; font-size: 1.1rem;">
+                        \( \text{Razão} = \frac{\text{pontos do jogador}}{\text{pontos do time}} = \frac{18}{90} \)
+                    </p>
+            
+                    <p>Agora simplificamos:</p>
+            
+                    <p style="text-align: center; font-size: 1.1rem;">
+                        \( \frac{18}{90} = \frac{1}{5} \)
+                    </p>
+            
+                    <p><strong>Resposta final:</strong> A razão é 1 para 5. Ou seja, de cada 5 pontos marcados pelo time, 1 ponto
+                        foi feito por esse jogador.</p>
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>3.</strong> Um trem percorreu uma distância de 604 km em 8 horas. Qual foi a velocidade média do
+                        trem nesse percurso?
+                    </p>
+                </div>
+            
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> A velocidade média é calculada usando a fórmula:</p>
+            
+                    <p style="text-align: center; font-size: 1.2rem;">
+                        \( V_m = \frac{\Delta S}{\Delta t} \)
+                    </p>
+            
+                    <p><strong>Onde:</strong></p>
+            
+                    <p style="margin-left: 30px;">
+                        &#9656; \( \Delta S \) é a distância total percorrida (em km)
+                    </p>
+                    <p style="margin-left: 30px;">
+                        &#9656; \( \Delta t \) é o tempo total do percurso (em horas)
+                    </p>
+            
+                    <p>Substituindo os valores:</p>
+            
+                    <p style="text-align: center; font-size: 1.2rem;">
+                        \( V_m = \frac{604}{8} = 75{,}5 \text{ km/h} \)
+                    </p>
+            
+                    <p><strong>Resposta final:</strong> A velocidade média do trem foi de 75,5 km/h.</p>
+                </div>
+            </div>
+
+        <div class="quadro-problema">
+            <div class="topo">
+                <p>
+                    <strong>4.</strong> Uma empresa de telecomunicações deseja repartir entre seus funcionários A, B e C, a título 
+                    de gratificação, uma quantia de R$ 620,00 em partes inversamente proporcionais ao número de 
+                    reclamações recebidas que cada um obteve durante o mês.
+                    <br><br>
+                    Sabe-se que:
+                    <br>▸ Funcionário A recebeu 2 reclamações
+                    <br>▸ Funcionário B recebeu 5 reclamações
+                    <br>▸ Funcionário C recebeu 3 reclamações
+                    <br><br>
+                    Determine quanto cada funcionário receberá.
+                </p>
+            </div>
+
+            <div class="resolucao">
+
+                <p><strong>Resolução:</strong> Quando a divisão é feita em partes inversamente proporcionais, quem tem menor valor 
+                associado (no caso, menos reclamações) recebe mais, e quem tem mais reclamações, recebe menos.</p>
+
+                <p>Inversamente proporcional significa que vamos trabalhar com os inversos dos valores dados:</p>
+
+                <p style="margin-left: 30px;">
+                    ▸ Reclamações: \( A = 2,\; B = 5,\; C = 3 \)
+                </p>
+
+                <p style="margin-left: 30px;">
+                    ▸ Inversos: \( \frac{1}{2},\; \frac{1}{5},\; \frac{1}{3} \)
+                </p>
+
+                <p><strong>Somando os inversos:</strong></p>
+
+                <p style="text-align: center; font-size: 1.2rem;">
+                    \( \frac{1}{2} + \frac{1}{5} + \frac{1}{3} \)
+                </p>
+
+                <p><strong>Tirando o mínimo múltiplo comum (mmc = 30):</strong></p>
+
+                <p style="text-align: center; font-size: 1.2rem;">
+                    \( \frac{15}{30} + \frac{6}{30} + \frac{10}{30} = \frac{31}{30} \)
+                </p>
+
+                <p>Então, os R$ 620,00 serão divididos na razão dos valores inversos, ou seja, na proporção 
+                \( \frac{15}{30},\; \frac{6}{30},\; \frac{10}{30} \), que somam 31 partes no total.</p>
+
+                <p><strong>Determinando o valor de cada parte:</strong></p>
+
+                <p style="text-align: center; font-size: 1.3rem;">
+                    \( \text{Valor de uma parte} = \frac{620 \cdot 30}{31} = 600 \)
+                </p>
+
+                <p><i>(Esse 600 é um valor auxiliar usado para facilitar o cálculo das parcelas proporcionais)</i></p>
+
+                <p><strong>Calculando os valores recebidos:</strong></p>
+
+                <p style="margin-left: 30px;">
+                    ▸ \( A \rightarrow \frac{1}{2} \cdot 600 = 300{,}00 \)
+                </p>
+
+                <p style="margin-left: 30px;">
+                    ▸ \( B \rightarrow \frac{1}{5} \cdot 600 = 120{,}00 \)
+                </p>
+
+                <p style="margin-left: 30px;">
+                    ▸ \( C \rightarrow \frac{1}{3} \cdot 600 = 200{,}00 \)
+                </p>
+
+                <p><strong>Resposta final:</strong><br>
+                    A recebeu: R$ 300,00<br>
+                    B recebeu: R$ 120,00<br>
+                    C recebeu: R$ 200,00
+                </p>
+
+            </div>
+        </div>
+        <div class="quadro-problema">
+            <div class="topo">
+                <p>
+                    <strong>5.</strong> Anderson, Bruno e Carlos trabalham na mesma firma comercial há, respectivamente,
+                    4 anos, 6 anos e 10 anos. A empresa deseja distribuir uma gratificação de R$ 4.000,00
+                    entre os três funcionários, proporcionalmente ao tempo de serviço de cada um.
+                    <br><br>
+                    Determine, em reais, quanto Bruno irá receber.
+                </p>
+            </div>
+        
+            <div class="resolucao">
+                <p><strong>Resolução:</strong> Quando a divisão é feita em partes diretamente proporcionais, cada pessoa recebe
+                    uma parte proporcional ao valor associado, neste caso, o tempo de serviço.</p>
+        
+                <p><strong>Identificando os tempos de serviço:</strong></p>
+        
+                <p style="margin-left: 30px;">
+                    ▸ <strong>Anderson:</strong> 4 anos
+                </p>
+                <p style="margin-left: 30px;">
+                    ▸ <strong>Bruno:</strong> 6 anos
+                </p>
+                <p style="margin-left: 30px;">
+                    ▸ <strong>Carlos:</strong> 10 anos
+                </p>
+        
+                <p>A soma dos tempos:</p>
+        
+                <p style="text-align: center; font-size: 1.2rem;">
+                    \( 4 + 6 + 10 = 20 \text{ partes} \)
+                </p>
+                <br>
+                <p><strong>Calculando o valor de cada parte:</strong></p>
+                <br>
+                <p style="text-align: center; font-size: 1.2rem;">
+                    \( \text{Valor de uma parte} = \frac{R\$ 4.000,00}{20} = R\$ 200,00 \)
+                </p>
+                <br>
+                <p><strong>Calculando a parte de Bruno:</strong></p>
+        
+                <p>Bruno tem direito a 6 partes:</p>
+        
+                <p style="text-align: center; font-size: 1.3rem;">
+                    \( 6 \cdot R\$ 200,00 = R\$ 1.200,00 \)
+                </p>
+                <br>
+                <p><strong>Resposta final:</strong> Bruno recebeu R$ 1.200,00 de gratificação.</p>
+            </div>
+        </div>
+        </section>
+        <section class="secao1" id="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    2. PORCENTAGEM
+                </h1>
+            </div>
+            <p>
+                Na matemática, o conceito de porcentagem apresenta grande importância na compreensão de situações
+                aplicadas ao dia-a-dia. É um dos tópicos da matemática mais conhecidos e é praticamente utilizado em
+                todas as áreas do conhecimento como, por exemplo, desconto, juros, entre outras aplicações.
+            </p>
+            <p>
+                Toda fração de denominador 100 representa uma porcentagem, como o próprio nome diz, por cem.
+            </p>
+            <br>
+            <div class="bloco-regra">
+            
+                <b>Exemplos:</b><br>
+        
+                <div class="linha-centro">
+                    \( \dfrac{15}{100} = 15\% \)
+                </div>
+            
+                <br>
+                <div class="linha-centro">
+                    \( \dfrac{8}{100} = 8\% \)
+                </div>
+                <br>
+            
+                <div class="linha-centro">
+                    \( \dfrac{121}{100} = 121\% \)
+                </div>
+            </div>
+            <br>
+            <p>
+                Observe que o símbolo “%” que aparece nos exemplos acima significa <b>“por cento”</b>. O símbolo (%) aparece
+                com muita frequência em jornais, revistas, televisão, anúncios, etc. Deslize pelas setas para ver exemplos:
+            </p>
+
+            <br>
+            <section class="slider-texto-container tema-green" data-slider-id="1">
+                <!-- conteúdo do slider 2 -->
+                <div class="slider-texto-wrapper">
+                    <div class="slide-texto ativo">
+                        <p class="conteudo-texto">
+                            No último ano o número de casos de uma determinada doença
+                            aumentou em 24%.
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <p class="conteudo-texto">
+                            A taxa de desemprego cresceu 11,9% neste ano.
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <p class="conteudo-texto">
+                            Desconto de 7% nas compras à vista.
+                        </p>
+                    </div>
+                    
+                </div>
+            
+                <button class="seta-texto esquerda" onclick="mudarSlideTexto(this, -1)">&#10094;</button>
+                <button class="seta-texto direita" onclick="mudarSlideTexto(this, 1)">&#10095;</button>
+            
+                <div class="slider-texto-indicadores">
+                </div>
+            </section>
+            <br>
+            <p>
+                A porcentagem, além de ser representada na forma de razão centesimal, também pode ser representada
+                na forma de números decimais. Deslize pelas setas para ver exemplos:
+            </p>
+            <br>
+            <section class="slider-texto-container tema-green" data-slider-id="2">
+                <!-- conteúdo do slider 2 -->
+                <div class="slider-texto-wrapper">
+            
+                    <!-- SLIDE 1 -->
+                    <div class="slide-texto ativo">
+                        <p class="conteudo-texto" style="text-align:center !important;">
+                            \( \large 50\% = \frac{50}{100} = 0{,}5 \)
+                            (lê-se: “cinquenta por cento”)
+                        </p>
+                    </div>
+            
+                    <!-- SLIDE 2 -->
+                    <div class="slide-texto">
+                        <p class="conteudo-texto" style="text-align:center !important;">
+                            \( \large 9\% = \frac{9}{100} = 0{,}09 \) 
+                            (lê-se: “nove por cento”)
+                        </p>
+                    </div>
+            
+                    <!-- SLIDE 3 -->
+                    <div class="slide-texto">
+                        <p class="conteudo-texto" style="text-align:center !important;">
+                            \( \large 78\% = \frac{78}{100} = 0{,}78 \) 
+                            (lê-se: “setenta e oito por cento”)
+                        </p>
+                    </div>
+            
+                    <!-- SLIDE 4 -->
+                    <div class="slide-texto">
+                        <p class="conteudo-texto" style="text-align:center !important;">
+                            \( \large 0,4\% = \frac{0,4}{100} = 0{,}004 \) 
+                            (lê-se: “zero vírgula quatro por cento”)
+                        </p>
+                    </div>
+            
+                    <!-- SLIDE 5 -->
+                    <div class="slide-texto">
+                        <p class="conteudo-texto" style="text-align:center !important;">
+                            \( \large 130\% = \frac{130}{100} = 1{,}3 \) 
+                            (lê-se: “cento e trinta por cento”)
+                        </p>
+                    </div>
+            
+                </div>
+            
+                <button class="seta-texto esquerda" onclick="mudarSlideTexto(this, -1)">&#10094;</button>
+                <button class="seta-texto direita" onclick="mudarSlideTexto(this, 1)">&#10095;</button>
+            
+                <div class="slider-texto-indicadores"></div>
+            </section>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    2.1 CALCULANDO PORCENTAGENS
+                </h1>
+            </div>
+            <p>
+                Calcular porcentagens significa encontrar um valor de um total com base em uma taxa percentual. Em
+                termos práticos, isso é feito multiplicando o valor desejado pela porcentagem correspondente, expressa na
+                forma decimal ou como fração com denominador 100. Esse procedimento permite descobrir, por exemplo,
+                quanto representa 10% de um salário, 25% de um desconto ou 5% de aumento em um preço. Trata-se de
+                uma operação simples, mas amplamente utilizada em situações cotidianas e decisões financeiras.
+            </p>
+        </section>
+        <section class="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    2.2. EXERCÍCIOS COMENTADOS
+                </h1>
+            </div>
+            <br>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1. Determine:</strong>.
+                    </p>
+                    <p>a) 20% de 400</p>
+                    <p>b) 10% de 5% de 200</p>
+                    <p>c) 107,5% de R$ 300,00</p>
+                    <p>d) 20% de 400</p>
+                </div>
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Existem duas formas comuns de calcular porcentagem:</p>
+                    <br>
+                    <p>
+                        Transformando o percentual em número decimal:
+                    </p>
+                    
+                    <p style="font-size: 1.1rem;">
+                        \( 20\% = 0,2 \;\Rightarrow\; 0,2 \times 400 = 80 \)
+                    </p>
+                    <br>
+                    <p>
+                        Ou utilizando fração:
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        \( \frac{20}{100} \times 400 = \frac{8000}{100} = 80 \)
+                    </p>
+                    <br>
+                    <p><strong>Resposta:</strong>
+                        20% de 400 é 80
+                    </p>
+                    <br>
+                    <p>
+                        <strong>b)</strong> 10% de 5% de 200
+                    </p>
+                    <br>
+                    <p>
+                        <strong>Resolução:</strong> Aqui, aplicamos uma porcentagem sobre outra porcentagem. Primeiro, transformamos os dois
+                        percentuais em frações:
+                    </p>
+                    <br>
+                    <p style="font-size: 1.1rem;">
+                        \( 10\% = \dfrac{10}{100}, \quad 5\% = \dfrac{5}{100} \)
+                    </p><br>
+                    <p>
+                        Multiplicando:
+                    </p><br>
+                    <p style="font-size: 1.1rem;">
+                        \( \dfrac{10}{100} \cdot \dfrac{5}{100} \cdot 200
+                        = \dfrac{50}{10.000} \cdot 200
+                        = \dfrac{10.000}{10.000}
+                        = 1 \)
+                    </p>
+                    <br>
+                    <p><strong>Resposta:</strong>
+                        10% de 5% de 200 é 1
+                    </p>
+                    <br>
+                    <p>
+                        <strong>c)</strong> 107,5% de R$ 300,00
+                    </p>
+                    <br>
+                    <p>
+                        <strong>Resolução:</strong> Neste caso, o valor percentual é <b>maior que 100%</b>, o que indica um aumento em relação ao
+                        valor original.
+                    </p>
+                    <p>Transformamos 107,5% em número decimal:</p>
+                    <br>
+                    <p style="font-size: 1.1rem;">
+                        \( 107,5\% = \dfrac{107,5}{100} = {1,075} \)
+                    </p><br>
+                    <p>
+                        Multiplicamos:
+                    </p><br>
+                    <p style="font-size: 1.1rem;">
+                        \( 1{,}075 \times 30 = \text{R\$}\,322{,}50 \)
+                    </p>
+                    <br>
+                    <p><strong>Resposta:</strong>
+                        107,5% de R$ 300,00 é R$ 322,50
+                    </p>
+                    
+                    <p>
+                        <strong>
+                            Respostas finais:
+                        </strong>
+                    </p>
+                    <p>a) 80</p>
+                    <p>b) 1</p>
+                    <p>c) R$322,50</p>
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p><strong>2.</strong>
+                    Um distribuidor vende uma caixa de determinado medicamento por R$250,00. Ao pagar à vista, o
+                    comprador recebe um desconto de 10%.
+                    </p>
+                    <p>Quanto será pago se a compra for feita à vista?</p>
+                </div>
+            
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Há duas formas corretas de calcular o valor com desconto. Ambas chegam ao mesmo
+                    resultado:</p>
+                    <p><strong>1ª maneira </strong>- Calculando o valor do desconto primeiro</p>
+                    <p>Calculamos 10% de R$250,00:</p>
+                    <p style="font-size: 1.1rem;">
+                        \( \dfrac{10}{100} \times 250 = 25 \)
+                    </p>
+            
+                    <p>Esse valor representa o desconto. Agora, subtraímos do valor original:</p>
+            
+                    <p style="font-size: 1.1rem;">
+                        \( 250 - 25 = 225 \)
+                    </p>
+            
+                    <p>Valor final com desconto: R$225,00</p>
+            
+                    <br>
+                    <p><strong>2ª maneira </strong>– Calculando diretamente 90% do valor</p>
+                    <p>Como o comprador está pagando com 10% de desconto, ele paga 90% do valor total:</p>
+            
+                    <p style="font-size: 1.1rem;">
+                        \( \dfrac{90}{100} \times 250 = 225 \)
+                    </p>
+            
+                    <p>Valor final com desconto: R$225,00</p>
+            
+                    <br>
+                    <p><strong>Resposta final:</strong> Será pago R$225,00 na compra do medicamento à vista.</p>
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p><strong>3.</strong>
+                    Uma farmácia paga R$40,00 por um creme dermatológico (preço de custo) e o vende por R$50,00 (preço
+                    de venda). Quantos por cento de lucro a farmácia obtém com essa venda?
+                    </p>
+                </div>
+            
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Para calcular o lucro percentual, podemos seguir os dois passos a seguir:</p>
+            
+                   
+                    <p><strong>1.</strong> Calcular o valor do lucro:</p>
+            
+                    <p style="font-size: 1.1rem;">
+                        \( \text{Lucro} = \text{Preço de venda} - \text{Preço de custo} = 50 - 40 = 10 \text{ reais} \)
+                    </p>
+                    <br>
+                    <p><strong>2.</strong> Calcular o percentual de lucro sobre o preço de custo:</p>
+                    <p>O percentual de lucro é calculado com base no preço de custo, pois ele representa o investimento inicial:</p>            
+                    <p style="font-size: 1.1rem;">
+                        \( \text{Lucro percentual} = \dfrac{Lucro}{Custo} \times 100 =
+                        \dfrac{10}{40} \times 100 = 25\% \)
+                    </p>
+                    <br>
+                    <p><strong>Resposta final:</strong> A farmácia obtém 25% de lucro com a venda deste creme.</p>
+                </div>
+            </div>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p><strong>4.</strong>
+                        Uma farmácia pode obter, no máximo, 8% de lucro sobre o preço de custo na venda de medicamentos
+                        de uso contínuo. Sabendo que a farmácia paga R$200,00 por um desses medicamentos, qual é o preço
+                        máximo que ela pode cobrar na venda?
+                    </p>
+                </div>
+            
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Existem duas maneiras corretas de resolver esse tipo de problema:</p>            
+                    <p><strong>1ª maneira:</strong> Calcular primeiro o valor do lucro e somar ao custo</p>
+                    <p>Calculamos 8% de R$ 200,00:</p>
+                    <p style="font-size: 1.1rem;">
+                        \(\dfrac{8}{100} \times 200 = 16 \)
+                    </p>
+                    <p>Somamos o lucro ao preço de custo:</p>
+                    <p style="font-size: 1.1rem;">
+                        \(200 + 16 = 216\)
+                    </p>
+                    <p>Preço máximo de venda: R$216,00</p><br>
+                    <p><strong>2ª maneira:</strong> Calcular diretamente 108% do custo</p>
+                    <p>
+                        Se o lucro é de 8%, então o preço de venda corresponde a 108% do custo:
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        \(\dfrac{108}{100} \times 200 = 216 \)
+                    </p>
+                    <p>
+                        Preço máximo de venda: R$216,00
+                    </p><br>
+                    <p><strong>Resposta final:</strong> O preço máximo pelo qual a farmácia pode vender o medicamento é R$216,00.</p>
+                </div>
+            </div>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p><strong>5.</strong>
+                        Uma máquina industrial passou por aumentos sucessivos de 10%, 18% e 25%, seguidos de reduções de
+                        20%, 5% e 9%. Sabendo que o valor inicial da máquina era R$184.500,00, determine qual é o valor atual
+                        da máquina.
+                    </p>
+                </div>
+            
+                <div class="resolucao">
+            
+                    <p><strong>Resolução:</strong> Quando ocorrem aumentos e reduções sucessivas, não podemos somar ou subtrair os
+                        percentuais diretamente. Em vez disso, usamos fatores multiplicativos, pois cada variação incide sobre
+                        o valor já modificado pela anterior.</p>
+            
+                    <br>
+            
+                    <p><strong>1. Converter as porcentagens em fatores decimais</strong></p>
+            
+                    <!-- Aumentos -->
+                    <p>▸ Aumentos:</p>
+            
+                    <p class="item-recuado">
+                        • 10% → \( 1 + 0{,}10 = 1{,}10 \)
+                    </p>
+            
+                    <p class="item-recuado">
+                        • 18% → \( 1 + 0{,}18 = 1{,}18 \)
+                    </p>
+            
+                    <p class="item-recuado">
+                        • 25% → \( 1 + 0{,}25 = 1{,}25 \)
+                    </p>
+            
+                    <br>
+            
+                    <!-- Reduções -->
+                    <p>▸ Reduções:</p>
+            
+                    <p class="item-recuado">
+                        • 20% → \( 1 - 0{,}20 = 0{,}80 \)
+                    </p>
+            
+                    <p class="item-recuado">
+                        • 5% → \( 1 - 0{,}05 = 0{,}95 \)
+                    </p>
+            
+                    <p class="item-recuado">
+                        • 9% → \( 1 - 0{,}09 = 0{,}91 \)
+                    </p>
+            
+                    <br>
+            
+                    <p><strong>2. Multiplicar todos os fatores na ordem dada</strong></p>
+            
+                    <p style="font-size: 1.1rem;">
+                        \( \text{Valor final} = 184.500 \times 1{,}10 \times 1{,}18 \times 1{,}25 \times 0{,}80 \times 0{,}95 \times
+                        0{,}91
+                        = 207.031{,}32 \)
+                    </p>
+            
+                    <br>
+            
+                    <p><strong>3. O cálculo também pode ser realizado parcialmente:</strong></p>
+            
+                    <p style="font-size: 1.1rem;">184.500 × 1,10 = 202.950</p>
+                    <p style="font-size: 1.1rem;">202.950 × 1,18 = 239.481</p>
+                    <p style="font-size: 1.1rem;">239.481 × 1,25 = 299.351,25</p>
+                    <p style="font-size: 1.1rem;">299.351,25 × 0,80 = 239.481</p>
+                    <p style="font-size: 1.1rem;">239.481 × 0,95 = 227.506,95</p>
+                    <p style="font-size: 1.1rem;">227.506,95 × 0,91 = 207.031,32</p>
+            
+                    <br>
+            
+                    <p><strong>Resposta final:</strong> O valor atual da máquina é R$207.031,30 (aproximado para duas casas decimais).</p>
+            
+                </div>
+            </div>
+        </section>
+        <section class="secao1" id="secao3">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    3. REGRA DE TRÊS (SIMPLES E COMPOSTA)
+                </h1>
+            </div>
+            <p>
+                A Regra de Três é um método utilizado para resolver situações que envolvem proporcionalidade,
+                quando conhecemos três valores e precisamos encontrar um quarto valor desconhecido. É amplamente
+                aplicada em diversas áreas do conhecimento, como Física e Química, especialmente em cálculos que
+                envolvem grandezas como velocidade, massa, volume, tempo, entre outras. Esse processo permite
+                relacionar os valores conhecidos de maneira direta ou inversa, facilitando a resolução de problemas
+                cotidianos e acadêmicos.
+            </p>
+            <br>
+            <!-- Bloco de Figura Estática -->
+            <section class="bloco-figura tema-verde">
+            
+                <!-- Título -->
+                <h3 class="titulo-figura"><span class="figura"><strong>Figura 4</strong>.</span> Representação visual da regra de três
+                </h3>
+                <br>
+                <!-- Imagem -->
+                <div class="figura-container">
+                    <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1764173975/figura4_xoiws7.png" alt="">
+                </div>
+            
+                <!-- Fonte -->
+                <p class="fonte-imagem"><strong><i>Fonte</strong>: Elaborada pela autora.</i></p>
+            
+                <!-- Descrição -->
+                <p class="descricao-figura">
+                    <strong>Descrição da imagem:</strong>
+                    A imagem exibe uma estrutura retangular com dois pares de números organizados em colunas, indicando uma relação
+                    de proporcionalidade utilizada na regra de três. Na primeira linha, os números três e cinco estão dispostos
+                    horizontalmente. Abaixo deles, na segunda linha, aparece o número sete sob o três, enquanto sob o cinco há um ponto de interrogação em vermelho, sugerindo
+                    que este é o valor desconhecido a ser encontrado. Essa configuração representa um problema típico de regra de três simples, em que se
+                    conhece três valores e é necessário descobrir o quarto para manter a proporcionalidade entre as grandezas envolvidas.
+            </section>
+            <br>
+            <p>
+                Clique nos cards a seguir para ver a diferença entre as Regras de Três Simples e Composta:
+            </p>
+            <br><br>
+            <div class="cards-container">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">REGRA DE TRÊS
+                        SIMPLES</div>
+                        <div class="flip-card-back">
+                            A Regra de Três Simples
+                            é usada quando há
+                            apenas uma relação
+                            entre duas grandezas,
+                            formando um conjunto
+                            com quatro valores,
+                            dos quais três são
+                            conhecidos e um é
+                            desconhecido.
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">REGRA DE TRÊS
+                        COMPOSTA</div>
+                        <div class="flip-card-back">
+                            A Regra de Três
+                            Composta é aplicada
+                            quando o problema envolve mais de duas
+                            grandezas, exigindo
+                            atenção às relações de
+                            proporcionalidade direta
+                            ou inversa entre elas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <p>
+                Ambas as Regras (Simples e Composta) formas permitem encontrar o valor procurado de maneira
+                organizada e eficiente, com base em raciocínios proporcionais.
+            </p>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    3.1 GRANDEZAS
+                </h1>
+            </div>
+            <p>
+                Entendemos por grandeza tudo aquilo que pode ser medido ou contado. No nosso cotidiano encontramos
+                diversas situações em que relacionamos duas ou mais grandezas, por exemplo: <strong>volume</strong>, <strong>massa</strong>,
+                <strong>comprimento</strong>, <strong>tempo</strong>, etc.
+            </p>
+            <p>
+                Para resolver uma regra de três, as grandezas deverão ser proporcionais, ou seja, devem estar relacionadas
+                de forma direta ou inversamente proporcionais.
+            </p>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    DIRETAMENTE PROPORCIONAIS
+                </h1>
+            </div>
+            <p>
+                Duas grandezas são diretamente proporcionais quando as duas aumentam ou diminuem na mesma razão.
+                Deslize pelas setas para ver alguns exemplos:
+            </p>
+            <br>
+            <section class="slider-texto-container tema-green" data-slider-id="1">
+                <!-- conteúdo do slider 2 -->
+                <div class="slider-texto-wrapper">
+                    <div class="slide-texto ativo">
+                        <p class="conteudo-texto">
+                            Quantidade (em litros) de gasolina e o valor total (em reais) a ser pago.
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <p class="conteudo-texto">
+                            Deslocamento (em metros) e tempo (em horas).
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <p class="conteudo-texto">
+                            Massa (em gramas) e calorias (kcal).
+                        </p>
+                    </div>
+            
+                </div>
+            
+                <button class="seta-texto esquerda" onclick="mudarSlideTexto(this, -1)">&#10094;</button>
+                <button class="seta-texto direita" onclick="mudarSlideTexto(this, 1)">&#10095;</button>
+            
+                <div class="slider-texto-indicadores">
+                </div>
+            </section>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    INVERSAMENTE PROPORCIONAIS
+                </h1>
+            </div>
+            <p>
+                Duas grandezas são inversamente proporcionais quando uma aumenta e a outra diminui na razão inversa
+                da primeira. Deslize pelas setas para ver alguns exemplos:
+            </p>
+            <br>
+            <section class="slider-texto-container tema-green" data-slider-id="1">
+                <!-- conteúdo do slider 2 -->
+                <div class="slider-texto-wrapper">
+                    <div class="slide-texto ativo">
+                        <p class="conteudo-texto">
+                            Velocidade (em km) e o tempo (em horas).
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <p class="conteudo-texto">
+                            Quantidade de operários e tempo.
+                        </p>
+                    </div>
+                    <div class="slide-texto">
+                        <p class="conteudo-texto">
+                            Massa (em gramas) e calorias (kcal).
+                        </p>
+                    </div>
+            
+                </div>
+            
+                <button class="seta-texto esquerda" onclick="mudarSlideTexto(this, -1)">&#10094;</button>
+                <button class="seta-texto direita" onclick="mudarSlideTexto(this, 1)">&#10095;</button>
+            
+                <div class="slider-texto-indicadores">
+                </div>
+            </section>
+            <br>
+            <div class="faixa-verde">
+                <h1 class="titulo-secao" style="font-size: 22px !important;">
+                    3.2 PASSOS PARA RESOLVER UMA REGRA DE TRÊS
+                </h1>
+            </div>
+            <p>
+                Clique nas abas para ver os passos para resolver uma regra de três:
+            </p>
+            <br><br>
+            <div class="tabs-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="tab1">1</button>
+                    <button class="tab-button" data-tab="tab2">2</button>
+                    <button class="tab-button" data-tab="tab3">3</button>
+
+                </div>
+            
+                <div id="tab1" class="tab-content active">
+                    <b>1.</b><br>O primeiro passo consiste em organizar os dados em uma tabela, de modo que
+                    as grandezas da mesma natureza fiquem agrupadas em colunas e as grandezas
+                    relacionadas fiquem posicionadas em linhas.
+                </div>
+            
+                <div id="tab2" class="tab-content">
+                    <b>2.</b><br>Em seguida, é necessário analisar se as grandezas envolvidas são diretamente ou
+                    inversamente proporcionais. No caso da regra de três composta, essa verificação
+                    deve ser feita sempre em relação à grandeza que contém o valor desconhecido
+                    (representado por x).
+                </div>
+                <div id="tab3" class="tab-content">
+                    <b>3.</b><br>Por fim, com base nessa análise, monta-se a proporção adequada e resolve-se a
+                    equação correspondente.
+                </div>
+            </div>
+            <br><br>
+        </section>
+        <section class="secao2">
+            <div class="faixa-verde">
+                <h1 class="titulo-secao">
+                    3.3 EXERCÍCIOS COMENTADOS
+                </h1>
+            </div>
+            
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>1. </strong>Uma certa torneira despeja 35 litros de água em 12 minutos. Quantos litros serão despejados por esta
+                        torneira em 1 hora?
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Sabemos que:</p>
+                    <!-- Aumentos -->
+                    <p>
+                        ▸ A torneira despeja mais água conforme mais tempo passa, ou seja, quantidade de água e tempo são
+                        grandezas diretamente proporcionais.
+                    </p>
+                    <p>
+                        ▸ 1 hora equivale a 60 minutos.
+                    </p>
+                    <p>
+                        Vamos montar a regra de três simples:
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1764169185/exercicio1.3.3_i92url.png"
+                            alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Como as grandezas são diretamente proporcionais, montamos a equação assim:
+                    </p><br>
+                    <p style="font-size: 1.1rem;">
+                        \( \Large \frac{35}{x} = \frac{12}{60} \)
+                    </p>
+                    <br>
+                    <p>
+                        Multiplicando cruzado:
+                    </p>
+                    <p>
+                        \( \large 12 \cdot x = 35 \cdot 60 \;\Rightarrow\; 12x = 2100 \;\Rightarrow\; x = \frac{2100}{12} = 175 \)
+                    </p>
+                    <br>
+                    <p><strong>Resposta:</strong>
+                        Em 1 hora, serão despejados 175 litros de água por essa torneira.
+                    </p> 
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>2. </strong>
+                        Um grupo de funcionários, trabalhando 8 horas por dia, realizou um serviço em 20 dias. Se o número
+                        de horas trabalhadas diariamente for reduzido para 5 horas por dia, em quantos dias esse mesmo grupo
+                        concluirá o serviço?
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Neste problema, estamos lidando com duas grandezas:</p>
+                    <!-- Aumentos -->
+                    <p>
+                        ▸ Horas por dia trabalhadas.
+                    </p>
+                    <p>
+                        ▸ Dias necessários para concluir o serviço.
+                    </p>
+                    <p>
+                        Quanto menos horas por dia se trabalha, mais dias serão necessários para concluir a mesma tarefa.
+                        Portanto, essas grandezas são inversamente proporcionais.
+                    </p><br>
+                    <p>
+                        <b>1.</b> Montando a regra de três (com inversão):
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1764170260/exercicio2.3.3_ip6bzg.png" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        Como as grandezas são inversamente proporcionais, devemos inverter uma das razões ao montar a
+                        equação:
+                    </p><br>
+                    <p style="font-size: 1.1rem;">
+                        \( \Large \frac{8}{5} = \frac{x}{20} \)
+                    </p>
+                    <br>
+                    <p>
+                        <b>2.</b> Multiplicando em cruz:
+                    </p>
+                    <p>
+                        \( \large 8 \cdot 20 = 5 \cdot x \;\Rightarrow\; 160 = 5x \;\Rightarrow\; x = \frac{160}{5} = 32 \)
+
+                    </p>
+                    <br>
+                    <p><strong>Resposta:</strong>
+                        O grupo levará 32 dias para concluir o serviço se passar a trabalhar 5 horas por dia.
+                    </p>
+                </div>
+            </div>
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>3. </strong>
+                        Um capital de R$4.200,00, no sistema de juros simples, rende R$240,00 em 5 meses a uma taxa fixa.
+                        Em quantos meses o capital de R$8.750,00 renderá R$300,00, mantendo o mesmo sistema e taxa?
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Aqui, temos três grandezas envolvidas:</p>
+                   
+                    <!-- Aumentos -->
+                    <p>
+                        ▸ Capital (R$)
+                    </p>
+                    <p>
+                        ▸ Rendimento (R$)
+                    </p>
+                    <p>
+                        ▸ Tempo (meses)
+                    </p>
+                    <p>
+                        Nosso objetivo é descobrir quanto tempo (x) o capital de R$8.750,00 leva para render R$300,00.
+                    </p>
+                    <br>
+                    <p>
+                        Análise da proporcionalidade:
+                    </p>
+                    <p>
+                        ▸ Capital e tempo → grandezas inversamente proporcionais
+                    </p>
+                    <p>
+                        (Se o capital aumenta, o tempo necessário para render um valor fixo diminui)
+                    </p>
+                    <p>
+                        ▸ Rendimento e tempo → grandezas diretamente proporcionais
+                    </p>
+                    <p>
+                        (Quanto maior o rendimento desejado, maior o tempo necessário)
+                    </p>
+                    
+                    <br>
+                    <p>
+                        <b>1. Organizando os dados:</b>
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable"
+                            src="https://res.cloudinary.com/di4ria1pf/image/upload/v1764171009/exercicio3.3.3_ntqyj7.png" alt="">
+                    </div>
+                    <br>
+                    <p>
+                        <b>2. Montando a regra de três mista:</b>
+                    </p>
+                    <p>
+                        Sabendo que capital e tempo são inversamente proporcionais, e rendimento e tempo são diretamente
+                        proporcionais, usamos:
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        \( \Large \frac{5}{x} = \frac{8750}{4200} \cdot \frac{240}{300} \)
+                    </p>
+                    <br>
+                    <p>
+                        <b>3. Resolvendo a equação:</b><br>
+                    </p><br>
+                    <p style="font-size: 1.1rem;">
+                        \( \Large \frac{5}{x} = \frac{8750}{4200} \cdot \frac{240}{300} = \frac{2100000}{1260000} \)
+                    </p><br>
+                    <p style="font-size: 1.1rem;">
+                        \( \Large \frac{5}{x} = \frac{35}{21} \;\Rightarrow\; \frac{5}{x} = \frac{5}{3} \;\Rightarrow\; {x} = 3 \)
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b> Serão necessários 3 meses para que o capital de R$8.750,00 gere R$300,00 de juros no
+                        mesmo sistema.
+                    </p>
+                </div>
+            </div>
+
+            <div class="quadro-problema">
+                <div class="topo">
+                    <p>
+                        <strong>4. </strong>
+                        Três máquinas, funcionando por 5 horas cada, conseguem produzir juntas 300 metros de um cabo
+                        especial. Quantos metros do mesmo cabo serão produzidos por 8 máquinas, iguais às anteriores,
+                        trabalhando 4 horas cada uma?
+                    </p>
+                </div>
+                <div class="resolucao">
+                    <p><strong>Resolução:</strong> Temos três grandezas envolvidas:</p>
+            
+                    <!-- Aumentos -->
+                    <p>
+                        ▸ Quantidade de máquinas
+                    </p>
+                    <p>
+                        ▸ Tempo de trabalho (horas)
+                    </p>
+                    <p>
+                        ▸ Comprimento produzido (metros)
+                    </p>
+                    <p>
+                        Nosso objetivo é encontrar quantos metros (x) serão produzidos nas novas condições.
+                    </p>
+                    <br>
+                    <p>
+                        <b>1. Análise das proporcionalidades:</b>
+                    </p>
+                    <p>
+                        Todas as grandezas são diretamente proporcionais, pois:
+                    </p>
+                    <p>
+                        ▸ Se aumentarmos o número de máquinas, a produção também aumenta.
+                    </p>
+                    <p>
+                        ▸ Se aumentarmos o tempo de funcionamento, a produção também aumenta.
+                    </p>
+                    <br>
+                    <p>
+                        <b>2. Organizando os dados em uma tabela:</b>
+                    </p>
+                    <br>
+                    <!-- Imagem do exercício -->
+                    <div class="figura-container-reduzida">
+                        <img class="zoomable" src="https://res.cloudinary.com/di4ria1pf/image/upload/v1764171891/erxercicio4.4_r4macm.png"
+                            alt="">
+                    </div>
+                    <br>
+                    <p>
+                        <b>3. Montando a regra de três composta:</b>
+                    </p>
+                    
+                    <p>
+                        Como as grandezas são todas diretamente proporcionais, montamos:
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        \( \Large \frac{300}{x} = \frac{3}{8} \cdot \frac{5}{4} \)
+                    </p>
+                    <br>
+                    <p>
+                        Multiplicando os valores:
+                    </p>
+                    
+                    <p style="font-size: 1.1rem;">
+                        \( \Large \frac{300}{x} = \frac{15}{32} \)
+                    </p>
+                    <br>
+                    <p>
+                        <b>4. Isolando x:</b>
+                    </p>
+                    
+                    <p style="font-size: 1.1rem;">
+                        \( \large x = \frac{300 \cdot 32}{15} = \frac{9600}{15} = 640 \)
+
+                    </p>
+                    <br>
+                    <p>
+                        <b>Resposta final:</b> Serão produzidos 640 metros de cabo pelas 8 máquinas, trabalhando 4 horas cada.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <br>
+        <div class="faixa-verde">
+            <h1 class="titulo-secao" style="text-align: center; font-size: 19px !important; color: #015A42 !important;">
+                Assista aos vídeos abaixo:
+            </h1>
+        </div>
+        <!-- Container dos vídeos -->
+        <div class="container-videos">
+            <div class="video-play-wrapper">
+                <div class="video-play-btn" data-video="" onclick="openVideoModal(this)">
+                    <i class='bx bx-play'></i>
+                </div>
+                <div class="video-play-text">Clique para assistir</div>
+            </div>
+        
+            <div class="video-play-wrapper">
+                <div class="video-play-btn" data-video="" onclick="openVideoModal(this)">
+                    <i class='bx bx-play'></i>
+                </div>
+                <div class="video-play-text">Clique para assistir</div>
+            </div>
+        </div>
+        
+        <!-- Modal com o vídeo -->
+        <div id="videoModal" class="video-modal" onclick="closeVideoModal()">
+            <div class="video-content" onclick="event.stopPropagation()">
+                <i class="bx bxs-x-circle close-btn" onclick="closeVideoModal()"></i>
+                <iframe id="videoIframe" width="800" height="450" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div><br><br>
+        </section>
+        <!-- Seção Conclusão -->
+        <section id="conclusao" class="conclusao">
+            <!-- Conteúdo -->
+            <div class="conteudo-conclusao">
+                <div class="caixa-texto">
+                    <h1 class="titulo-conclusao">CONCLUSÃO</h1>
+                    <p>
+                        Ao longo desta unidade, vimos que conceitos matemáticos como razão, proporção, porcentagem e regra
+                        de três não são apenas temas escolares, mas sim ferramentas que usamos constantemente, mesmo sem
+                        perceber. Desde a leitura de uma etiqueta de desconto até a análise de tempo necessário para terminar
+                        uma tarefa em grupo, essas noções nos ajudam a organizar informações e tomar decisões com mais
+                        precisão. Quando sabemos identificar as grandezas envolvidas, perceber se estão relacionadas de forma
+                        direta ou inversa e montar os cálculos corretamente, resolvemos problemas com mais autonomia.
+                    </p>
+                    <p>
+                        Você teve a oportunidade de revisar fórmulas, interpretar situações reais e aplicar os procedimentos passo
+                        a passo. Espera-se que, com isso, os conteúdos revistos nesta unidade deixem de parecer distantes e
+                        se tornem instrumentos úteis no seu cotidiano. Afinal, a matemática está presente em situações simples
+                        e também nas mais complexas, e dominá-la é uma forma de ganhar clareza, confiança e agilidade na
+                        hora de resolver problemas. Sempre que encontrar uma situação que envolva comparação, proporção ou
+                        cálculo percentual, você saberá por onde começar.
+                    </p>
+                </div>
+            </div>
+            <div id="download" class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1HGAqm4m73OLmWG9bH5ApYkRSZ-HwbEKl" class="download-btn">
+                    Baixar PDF <i class="fas fa-download"></i> <!-- Ícone de download -->
+                </a>
+            </div>
+        </section>
+        <!-- Seção Referências-->
+        <!-- Seção Referências-->
+        <section id="referencias" class="referencias">
+            <!-- Conteúdo -->
+            <div class="conteudo-referencias">
+                <div class="caixa-texto">
+                    <h1 class="titulo-referencias">REFERÊNCIAS</h1>
+        
+                    <p>BRASIL ESCOLA. <b>Razão matemática.</b> Brasil Escola, [s.d.]. Disponível em:
+                        <a href="https://educador.brasilescola.uol.com.br/estrategias-ensino/razao-matematica.htm"
+                            target="_blank">
+                            https://educador.brasilescola.uol.com.br/estrategias-ensino/razao-matematica.htm
+                        </a>
+                        Acesso em: 3 mar. 2021.
+                    </p>
+        
+                    <p>GOUVEIA, R. <b>Razão e proporção.</b> Toda Matéria, [s.d.]. Disponível em:
+                        <a href="https://www.todamateria.com.br/razao-e-proporcao/" target="_blank">
+                            https://www.todamateria.com.br/razao-e-proporcao/
+                        </a>
+                        Acesso em: 3 mar. 2021.
+                    </p>
+        
+                    <p>GOUVEIA, R. <b>Regra de três simples e composta.</b> Toda Matéria, [s.d.]. Disponível em:
+                        <a href="https://www.todamateria.com.br/regra-de-tres-simples-e-compos-ta/" target="_blank">
+                            https://www.todamateria.com.br/regra-de-tres-simples-e-compos-ta/
+                        </a>
+                        Acesso em: 31 mar. 2021.
+                    </p>
+        
+                    <p>JACONIANO, E.; CAMELIER, R. <b>Regra de três.</b> Educação – Globo, [s.d.]. Disponível em:
+                        <a href="http://educacao.globo.com/matematica/assunto/matematica-basica/regra-de-tres.html"
+                            target="_blank">
+                            http://educacao.globo.com/matematica/assunto/matematica-basica/regra-de-tres.html
+                        </a>
+                        Acesso em: 31 mar. 2021.
+                    </p>
+        
+                    <p>MATIKA. <b>Teoria:</b> grandezas diretamente e inversamente proporcionais. Matika, [s.d.].
+                        Disponível em:
+                        <a href="https://matika.com.br/grandezas-diretamente-e-inversamente-proporcionais/grandezas-diretamente-proporcionais"
+                            target="_blank">
+                            https://matika.com.br/grandezas-diretamente-e-inversamente-proporcionais/grandezas-diretamente-proporcionais
+                        </a>
+                        Acesso em: 31 mar. 2021.
+                    </p>
+        
+                    <p>OLIVEIRA, N. C. N. <b>Cálculo de razão:</b> velocidade média e densidade demográfica. Brasil
+                            Escola, [s.d.]. Disponível em:
+                        <a href="https://brasilescola.uol.com.br/matematica/calculo-razao-velocidade-media-densidade-demografica.htm"
+                            target="_blank">
+                            https://brasilescola.uol.com.br/matematica/calculo-razao-velocidade-media-densidade-demografica.htm
+                        </a>
+                        Acesso em: 3 mar. 2021.
+                    </p>
+        
+                    <p>OLIVEIRA, R. R. <b>Regra de três simples.</b> Brasil Escola, [s.d.]. Disponível em:
+                        <a href="https://brasilescola.uol.com.br/matematica/regra-tres-simples.htm" target="_blank">
+                            https://brasilescola.uol.com.br/matematica/regra-tres-simples.htm
+                        </a>
+                        Acesso em: 31 mar. 2021.
+                    </p>
+        
+                    <p>PORCENTAGEM. <b>Como calcular porcentagem?</b> Porcentagem.org, [s.d.]. Disponível em:
+                        <a href="https://www.porcentagem.org/" target="_blank">https://www.porcentagem.org/</a>
+                        Acesso em: 17 mar. 2021.
+                    </p>
+        
+                    <p>RIBEIRO, A. G. <b>Propriedades das proporções.</b> Mundo Educação, [s.d.]. Disponível em:
+                        <a href="https://mundoeducacao.uol.com.br/matematica/propriedades-das-proporcoes.htm" target="_blank">
+                            https://mundoeducacao.uol.com.br/matematica/propriedades-das-proporcoes.htm
+                        </a>
+                        Acesso em: 3 mar. 2021.
+                    </p>
+        
+                    <p>SILVA, D. D. <b>Porcentagem.</b> InfoEscola, [s.d.]. Disponível em:
+                        <a href="https://www.infoescola.com/matematica/porcentagem/" target="_blank">
+                            https://www.infoescola.com/matematica/porcentagem/
+                        </a>
+                        Acesso em: 17 mar. 2021.
+                    </p>
+        
+                    <p>SILVA, L. P. M. <b>O que é proporção?</b> Brasil Escola, [s.d.]. Disponível em:
+                        <a href="https://brasilescola.uol.com.br/o-que-e/matematica/o-que-e-proporcao.htm" target="_blank">
+                            https://brasilescola.uol.com.br/o-que-e/matematica/o-que-e-proporcao.htm
+                        </a>
+                        Acesso em: 3 mar. 2021.
+                    </p>
+        
+                    <p>SILVA, M. N. P. Cálculo de porcentagem com regra de três. Brasil Escola, [s.d.].
+                        Disponível em:
+                        <a href="https://brasilescola.uol.com.br/matematica/porcentagem-utilizando-regra-tres.htm"
+                            target="_blank">
+                            https://brasilescola.uol.com.br/matematica/porcentagem-utilizando-regra-tres.htm
+                        </a>
+                        Acesso em: 17 mar. 2021.
+                    </p>
+        
+                    <p>SÓ MATEMÁTICA. <b>Porcentagem.</b> Só Matemática, [s.d.]. Disponível em:
+                        <a href="https://www.somatematica.com.br/fundam/porcent.php" target="_blank">
+                            https://www.somatematica.com.br/fundam/porcent.php
+                        </a>
+                        Acesso em: 17 mar. 2021.
+                    </p>
+        
+                    <p>SÓ MATEMÁTICA. <b>Regra</b> de três simples. Só Matemática, [s.d.]. Disponível em:
+                        <a href="https://www.somatematica.com.br/fundam/regra3s.php" target="_blank">
+                            https://www.somatematica.com.br/fundam/regra3s.php
+                        </a>
+                        Acesso em: 31 mar. 2021.
+                    </p>
+        
+                </div>
+            </div>
+        </section>
+        <!-- Seção com os créditos e ficha técnica -->
+        <section class="ficha-tecnica">
+            <p>CASA NOSSA SENHORA DA PAZ – AÇÃO SOCIAL FRANCISCANA, PROVÍNCIA FRANCISCANA DA <br>
+                IMACULADA CONCEIÇÃO DO BRASIL – ORDEM DOS FRADES MENORES</p>
+            <br>
+            <p><strong>GESTOR DO CENTRO DE INOVAÇÃO E SOLUÇÕES EDUCACIONAIS - CISE</strong>
+                Franklin Portela Correia</p>
+        
+            <p><strong>COORDENADORA DO PROGRAMA DE ATUALIZAÇÃO</strong>
+                Flávia Cristina Franco de Lima Rosa</p>
+        
+            <p><strong>SUPERVISORA EDUCACIONAL</strong>
+                Juliane Cristine Batista</p>
+        
+            <p><strong>DESIGNER INSTRUCIONAL</strong>
+                Ana Angelica Miranda Ramos</p>
+        
+            <p><strong>PROJETO GRÁFICO</strong>
+                Andréa Calegari<br>
+                Lucas Ichimaru Testa</p>
+        
+            <p><strong>DIAGRAMADORES</strong>
+                Andréa Calegari<br>
+                Lucas Ichimaru Testa</p>
+        
+            <p><strong>DESENVOLVEDOR</strong>
+                Pedro Vinicius Pires de Oliveira Dias</p>
+        
+            <p><strong>PRODUTOR AUDIOVISUAL</strong>
+                Cassio Martins de Carvalho</p>
+        
+            <p><strong>EDIÇÃO DE VÍDEOS</strong>
+                Diogo Lefort Silva<br>
+                Rafael da Silva Oliveira<br>
+                Hugo Henrique Ferreira da Silva</p>
+        
+            <br><br>
+            <p><span class="paragraforeduzido">
+                    © 2026 Universidade São Francisco<br>
+                    Avenida São Francisco de Assis, 218<br>
+                    CEP 12916-900 – Bragança Paulista/SP
+            </p></span>
+        </section>
+        <footer class="footer">
+            <p>Copyright © de Universidade São Francisco</p>
+            <hr class="footer-divider">
+            <span class="fonte-menor">Todos os direitos reservados. Este ebook ou
+                qualquer parte dele não pode ser reproduzido ou usado em quaisquer formas (eletrônico,
+                gravação, fotocópia, distribuição pela Internet ou outros) sem autorização
+                expressa, por escrito, da <strong>Universidade São Francisco.</strong></span>
+        </footer>
+
+        <script>
+             // Navbar
+                document.querySelector('.menu-toggle').addEventListener('click', () => {
+                    const menu = document.querySelector('.navbar ul');
+                    const icons = document.querySelectorAll('.menu-toggle i'); // Seleciona ambos os ícones
+
+                    menu.classList.toggle('show'); // Alterna a visibilidade do menu
+
+                    // Alterna entre o ícone de abrir (menu) e o ícone de fechar (x)
+                    icons[0].style.display = icons[0].style.display === 'none' ? 'block' : 'none'; // Mostra ou esconde o ícone de menu
+                    icons[1].style.display = icons[1].style.display === 'none' ? 'block' : 'none'; // Mostra ou esconde o ícone de fechar
+                });
+                // Fechar o menu ao clicar em um link
+                const links = document.querySelectorAll('.navbar ul li a');
+                links.forEach(link => {
+                    link.addEventListener('click', () => {
+                        const menu = document.querySelector('.navbar ul');
+                        const icons = document.querySelectorAll('.menu-toggle i');
+
+                        // Fecha o menu ao clicar no link
+                        menu.classList.remove('show');
+                        icons[0].style.display = 'block'; // Exibe o ícone de menu
+                        icons[1].style.display = 'none'; // Esconde o ícone de fechar
+                    });
+                });
+                // Captura o elemento navbar
+                const navbar = document.querySelector('.navbar');
+
+                // Função que altera a opacidade da navbar
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) { // Quando o scroll for maior que 50px
+                        navbar.style.backgroundColor = 'rgba(159, 67, 190, 0.8)'; // Opacidade 80%
+                    } else {
+                        navbar.style.backgroundColor = '#9F43BE'; // Cor original sem transparência
+                    }
+                });
+
+
+                // Cria o container lightbox
+                const lightbox = document.createElement("div");
+                lightbox.classList.add("lightbox");
+                document.body.appendChild(lightbox);
+
+                let scale = 1; // nível de zoom
+                let isDragging = false;
+                let startX, startY, translateX = 0, translateY = 0;
+
+                document.querySelectorAll(".zoomable").forEach(img => {
+                    img.addEventListener("click", () => {
+                        const imgClone = document.createElement("img");
+                        imgClone.src = img.src;
+                        imgClone.alt = img.alt;
+                        imgClone.style.objectFit = "contain"; // garante que abre ajustada
+                        imgClone.style.maxWidth = "100%";
+                        imgClone.style.maxHeight = "100%";
+
+                        lightbox.innerHTML = "";
+                        lightbox.appendChild(imgClone);
+                        lightbox.style.display = "flex";
+                        scale = 1;
+                        translateX = translateY = 0;
+                        updateTransform(imgClone);
+
+                        // Mensagem de dica
+                        const hint = document.createElement("div");
+                        hint.classList.add("lightbox-hint");
+                        hint.innerText = "Use a roda do mouse para dar zoom e arraste para mover";
+                        lightbox.appendChild(hint);
+
+                        // Remove a dica após 4s
+                        setTimeout(() => {
+                            if (hint && hint.parentNode) {
+                                hint.remove();
+                            }
+                        }, 4000);
+
+                        // Zoom com scroll
+                        imgClone.addEventListener("wheel", e => {
+                            e.preventDefault();
+                            scale += e.deltaY * -0.001;
+                            scale = Math.min(Math.max(1, scale), 5); // limite de zoom
+                            updateTransform(imgClone);
+                        });
+
+                        // Arrastar imagem
+                        imgClone.addEventListener("mousedown", e => {
+                            isDragging = true;
+                            startX = e.clientX - translateX;
+                            startY = e.clientY - translateY;
+                            lightbox.style.cursor = "grabbing";
+                        });
+
+                        window.addEventListener("mousemove", e => {
+                            if (!isDragging) return;
+                            translateX = e.clientX - startX;
+                            translateY = e.clientY - startY;
+                            updateTransform(imgClone);
+                        });
+
+                        window.addEventListener("mouseup", () => {
+                            isDragging = false;
+                            lightbox.style.cursor = "grab";
+                        });
+                    });
+                });
+
+                // Fecha clicando fora da imagem
+                lightbox.addEventListener("click", e => {
+                    if (e.target === lightbox) {
+                        lightbox.style.display = "none";
+                    }
+                });
+
+                // Função para aplicar zoom + movimento
+                function updateTransform(img) {
+                    img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+                }
+            document.querySelectorAll('.slider-texto-container').forEach(initSliderTexto);
+
+                function initSliderTexto(container) {
+                    const slides = container.querySelectorAll('.slide-texto');
+                    const indicatorsContainer = container.querySelector('.slider-texto-indicadores');
+
+                    indicatorsContainer.innerHTML = ''; // Limpa indicadores anteriores
+
+                    // Cria os dots dinamicamente
+                    slides.forEach((_, index) => {
+                        const dot = document.createElement('span');
+                        dot.classList.add('dot-texto');
+                        dot.onclick = () => mostrarSlide(index);
+                        indicatorsContainer.appendChild(dot);
+                    });
+
+                    const dots = container.querySelectorAll('.dot-texto');
+                    let currentIndex = 0;
+
+                    function mostrarSlide(index) {
+                        slides.forEach(slide => slide.classList.remove('ativo'));
+                        dots.forEach(dot => dot.classList.remove('ativo'));
+
+                        currentIndex = (index + slides.length) % slides.length;
+
+                        slides[currentIndex].classList.add('ativo');
+                        dots[currentIndex].classList.add('ativo');
+                    }
+
+                    // Armazena a função no container para chamadas externas
+                    container.mostrarSlideTexto = mostrarSlide;
+                    container.getCurrentIndex = () => currentIndex;
+                    mostrarSlide(0);
+                }
+
+                // Chamado pelos botões de seta
+                function mudarSlideTexto(button, direcao) {
+                    const container = button.closest('.slider-texto-container');
+                    const currentIndex = container.getCurrentIndex();
+                    container.mostrarSlideTexto(currentIndex + direcao);
+                }
+
+                // Chamado pelos dots (não necessário, mas deixado por compatibilidade)
+                function irParaSlideTexto(dot, index) {
+                    const container = dot.closest('.slider-texto-container');
+                    container.mostrarSlideTexto(index);
+                }
+
+            document.querySelectorAll('.acordeon-header, .acordeon-headerb, .acordeon-headerc, .acordeon-headerd').forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = header.nextElementSibling;
+                        const isVisible = content.style.display === 'block';
+                        content.style.display = isVisible ? 'none' : 'block';
+                        const icon = header.querySelector('.acordeon-icon');
+                        if (icon) {
+                            icon.classList.toggle('bx-chevron-up', !isVisible);
+                            icon.classList.toggle('bx-chevron-down', isVisible);
+                        }
+                    });
+                });
+                
+
+                // Seleciona apenas os tabs dentro da div "tema-verde"
+                    const temaVerdeContainers = document.querySelectorAll(".tabs-container");
+
+                    temaVerdeContainers.forEach(container => {
+                        const buttons = container.querySelectorAll(".tab-button");
+                        const contents = container.querySelectorAll(".tab-content");
+
+                        buttons.forEach(button => {
+                            button.addEventListener("click", () => {
+                                // Remove estado ativo anterior apenas dentro deste container
+                                buttons.forEach(btn => btn.classList.remove("active"));
+                                contents.forEach(content => content.classList.remove("active"));
+
+                                // Adiciona novo estado ativo
+                                button.classList.add("active");
+                                const target = container.querySelector(`#${button.dataset.tab}`);
+                                if (target) target.classList.add("active");
+                            });
+                        });
+                    });
+                     document.addEventListener("DOMContentLoaded", function () {
+                            const videoModal = document.getElementById('videoModal');
+                            const iframe = document.getElementById('videoIframe');
+
+                            // Função para abrir modal
+                            window.openVideoModal = function (element) {
+                                const videoLink = element.getAttribute("data-video");
+                                iframe.src = videoLink;
+                                videoModal.style.display = "flex";
+                            }
+
+                            // Função para fechar modal
+                            window.closeVideoModal = function () {
+                                iframe.src = "";
+                                videoModal.style.display = "none";
+                            }
+
+                            // Fecha ao clicar fora do conteúdo
+                            videoModal.addEventListener('click', function (event) {
+                                if (event.target === this) {
+                                    closeVideoModal();
+                                }
+                            });
+                        });
+        </script>
+</body>
+</html>
